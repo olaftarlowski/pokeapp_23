@@ -13,7 +13,7 @@ const Sidebar = () => {
       setHasError(true)
       return
     } else if (dataReceived) {
-      setData(dataReceived?.data.results)
+      setData(dataReceived?.data.pokemon_entries)
     }
   }
 
@@ -21,16 +21,17 @@ const Sidebar = () => {
     getData()
   }, [])
 
-  console.log("DATA FETCHED");
-  console.log(data);
+  // console.log("DATA FETCHED");
+  // console.log(data);
 
 
   return (
     <div>
       {data?.length !== 0 ? (
         <>
-          {data?.map((item: { name: { first: string, last: string }, gender: string, id: { value: string } }) => {
-            return <h1 key={item.id.value}>{item.name.first} || {item.name.last} || {item.gender} </h1>
+          {data?.map((item: { pokemon_species: { name: string,  } ,entry_number: number}) => {
+            return <div key={item.entry_number} style={{display: "inline-block"}}><div><h6 >{item.entry_number}.  {item.pokemon_species.name}</h6></div>
+            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.entry_number}.png`} alt="" /></div>
           })}
         </>
       ) : (

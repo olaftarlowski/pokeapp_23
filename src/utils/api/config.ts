@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://randomuser.me",
+  baseURL: "https://pokeapi.co/api/v2/pokedex/kanto",
   headers: {
     common: {
       "Content-Type": "application/json",
