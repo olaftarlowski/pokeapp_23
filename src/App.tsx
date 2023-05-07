@@ -31,18 +31,7 @@ const router = createBrowserRouter(
 const App = () => {
 
   return (
-    <>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
       <RouterProvider router={router} />
-      {/* <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sidebar" element={<Sidebar />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes> */}
-      <p>DUPXO</p>
-    </>
   )
 }
 

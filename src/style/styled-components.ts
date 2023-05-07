@@ -1,4 +1,14 @@
 import styled from "styled-components";
+import backgroundImage from "../assets/container_bg.png"
+
+export const RootLayoutWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 100vh;
+  background: url(${backgroundImage});
+`;
 
 export const HeaderWrapper = styled.header`
   background: #f8fafd;
@@ -65,6 +75,7 @@ export const NavbarWrapper = styled.nav`
         display: block;
       }
       a {
+        text-align: center;
         min-width: 120px;
         white-space: nowrap;
         display: block;
