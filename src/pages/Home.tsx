@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
-import { fetchData } from "../utils/api"
+import { fetchRegionKanto } from "../utils/api"
 
 const Home = () => {
     const [data, setData] = useState<[] | null>([])
     const [hasError, setHasError] = useState<boolean>(false)
 
     const getData = async () => {
-        const dataReceived = await fetchData()
-        console.log(dataReceived);
+        const dataReceived = await fetchRegionKanto()
+        // console.log(dataReceived);
         if (dataReceived === null) {
             setHasError(true)
             return

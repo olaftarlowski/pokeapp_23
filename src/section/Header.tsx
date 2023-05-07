@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import Hamburger from "hamburger-react";
 import { Collapse } from "react-collapse";
 
-import Navbar from "../components/Navbar";
+import { Navbar } from "../components";
 import { useIsMobile } from "../utils/hooks/useBreakpoint";
 import { HeaderWrapper } from "../style/styled-components"
 

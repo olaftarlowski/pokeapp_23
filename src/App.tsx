@@ -1,17 +1,32 @@
 import {
-  Routes,
+  // Routes,
   Route,
-  Navigate
+  // Navigate
+  createRoutesFromElements,
+  createBrowserRouter,
+  RouterProvider
 } from "react-router-dom";
 
+import { Home, SingleItem, RootLayout } from './pages'
 import {
-  // ErrorPage,
-  Sidebar
+  ErrorPage, Sidebar
 } from './components'
-import Home from './pages/Home';
 import './App.css'
-import Header from "./section/Header";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="/"
+      element={<RootLayout />}
+      errorElement={<ErrorPage />}
+    >
+      <Route index element={<Home />} />
+      <Route path="/sidebar" element={<Sidebar />} />
+      <Route path="/single" element={<SingleItem />} />
+      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+    </Route>
+  )
+);
 
 const App = () => {
 
@@ -20,12 +35,12 @@ const App = () => {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <Header />
-      <Routes>
+      <RouterProvider router={router} />
+      {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      </Routes> */}
       <p>DUPXO</p>
     </>
   )

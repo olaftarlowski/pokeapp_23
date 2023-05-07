@@ -15,8 +15,8 @@ const Navbar = ({ setIsNavExpanded }: { setIsNavExpanded: React.Dispatch<React.S
     const navbarItems: Link[] = [
         { name: "Home", to: "/" },
         { name: "Sidebar", to: "sidebar" },
-        // { name: "nowości", to: "/nowosci" },
-        // { name: "kontakt", to: "/kontakt" },
+        { name: "single", to: "single" },
+        // { name: "contact", to: "/contact" },
     ];
 
     const expandNavHandler = () => {
