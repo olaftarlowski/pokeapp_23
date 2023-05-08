@@ -12,7 +12,7 @@ const fetchRegionKanto = async () => {
   return response;
 };
 
-const fetchSingleKanto = async () => {
+const fetchSingleKantoRandom = async () => {
   const generateRandomRecord = (): string => {
     const randomNum = Math.floor(Math.random() * 151) + 1;
     const randomStr = randomNum.toString();
@@ -33,4 +33,18 @@ const fetchSingleKanto = async () => {
   return response;
 };
 
-export { fetchRegionKanto, fetchSingleKanto };
+const fetchSingleKanto = async (recordName: string) => {
+  console.log("SingleItem choosen: ", recordName);
+
+  const response = await api.get(`pokemon/${recordName}/`).catch((error) => {
+    if (error.response) {
+      console.log("Error: ", error.message);
+      console.log("Response status: ", error.response.status);
+    }
+    return null;
+  });
+
+  return response;
+};
+
+export { fetchRegionKanto, fetchSingleKanto, fetchSingleKantoRandom };

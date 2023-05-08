@@ -12,6 +12,7 @@ import {
   ErrorPage, Sidebar
 } from './components'
 import './App.css'
+import PokeSingle from "./pages/PokeSingle";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="/sidebar" element={<Sidebar />} />
       <Route path="/single" element={<SingleItem />} />
+      <Route path="/:pokeNameCode" element={<PokeSingle />} />
       {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
     </Route>
   )

@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react"
-import { fetchSingleKanto } from "../utils/api"
+import { fetchSingleKantoRandom } from "../utils/api"
 
-
-
-
-
-import { keyframes } from "styled-components";
-import styled from "styled-components";
 
 interface SingleRecord {
     id: number,
@@ -18,7 +12,7 @@ const SingleItem = () => {
     const [hasError, setHasError] = useState<boolean>(false)
 
     const getData = async () => {
-        const dataReceived = await fetchSingleKanto()
+        const dataReceived = await fetchSingleKantoRandom()
         // console.log(dataReceived);
         if (dataReceived === null) {
             setHasError(true)

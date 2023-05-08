@@ -30,7 +30,7 @@ const PokeList = () => {
         <PokeListWrapper>{data?.length !== 0 ? (
             <>
                 {data?.map((item: { pokemon_species: { name: string, }, entry_number: number }) => {
-                    return <PokeListItem id={item.entry_number} name={item.pokemon_species.name} sprite={`${imageLink}${item.entry_number}.png`}></PokeListItem>
+                    return <PokeListItem key={item.entry_number} id={item.entry_number} name={item.pokemon_species.name} sprite={`${imageLink}${item.entry_number}.png`}></PokeListItem>
                 })}
             </>
         ) : (
