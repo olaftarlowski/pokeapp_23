@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react"
 import { fetchSingleKanto } from "../utils/api"
 
-type SingleRecord = {
+
+
+
+
+import { keyframes } from "styled-components";
+import styled from "styled-components";
+
+interface SingleRecord {
     id: number,
     name: string
 }
@@ -44,7 +51,8 @@ const SingleItem = () => {
 
                 )}
                 {hasError && <p>An error has occured...</p>}
-            </div></>
+            </div>
+            </>
     )
 }
 

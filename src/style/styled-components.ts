@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import backgroundImage from "../assets/container_bg.png"
+import backgroundImage from "../assets/container_bg.png";
 
 export const RootLayoutWrapper = styled.div`
   display: flex;
@@ -9,6 +9,8 @@ export const RootLayoutWrapper = styled.div`
   min-height: 100vh;
   background: url(${backgroundImage});
 `;
+
+export const HomeWrapper = styled.div``;
 
 export const HeaderWrapper = styled.header`
   background: #f8fafd;
@@ -39,10 +41,11 @@ export const HeaderWrapper = styled.header`
     .logosDIV {
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       @media (max-width: 768px) {
         width: 100%;
+        justify-content: space-between;
       }
     }
     @media (max-width: 768px) {
@@ -100,5 +103,16 @@ export const NavbarWrapper = styled.nav`
         }
       }
     }
+  }
+`;
+
+export const PokeListWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-items: stretch;
+  @media (max-width: 1200px) {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 `;
