@@ -9,7 +9,7 @@ type PokeMove = {
         name: string
     }
 }
-interface PokeSingleItem {
+interface PokeSingleInterface {
     id: number
     name: string
     sprite: string
@@ -19,7 +19,7 @@ interface PokeSingleItem {
     moves: PokeMove[]
 }
 
-const PokeSingleItem = ({ id, name, sprite, height, weight, types, moves }: PokeSingleItem) => {
+const PokeSingleItem = ({ id, name, sprite, height, weight, types, moves }: PokeSingleInterface) => {
 
     return (
         <div className={styles.wrapper}>

@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { fetchSingleKanto } from "../utils/api"
 import { PokeSingleItem } from "../components/PokeSingleItem";
 import { LoadingSpinner } from "../components/common";
+import { ErrorPage } from "../components";
 
 interface SingleRecord {
     id: number,
@@ -42,8 +43,9 @@ const PokeSingle = () => {
 
     return (
         <div>
+
             {loading && <LoadingSpinner />}
-            {error && <p>An error has occured...</p>}
+            {error && <ErrorPage />}
             {pokemon && (
                 <PokeSingleItem
                     id={pokemon.id}
