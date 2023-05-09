@@ -1,18 +1,16 @@
 import {
-  // Routes,
   Route,
-  // Navigate
   createRoutesFromElements,
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
 
-import { Home, SingleItem, RootLayout } from './pages'
+import { Home, SingleItem, RootLayout, PokeSingle } from './pages'
 import {
   ErrorPage, Sidebar
 } from './components'
 import './App.css'
-import PokeSingle from "./pages/PokeSingle";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,8 +30,9 @@ const router = createBrowserRouter(
 
 const App = () => {
 
+
   return (
-      <RouterProvider router={router} />
+    <RouterProvider router={router} />
   )
 }
 

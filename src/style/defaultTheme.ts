@@ -18,4 +18,35 @@ const theme: MainTheme = {
   },
 };
 
-export { theme };
+//////////////////////
+interface Colors {
+  colors: {
+    primary: string;
+    secondary: string;
+    background: string;
+    text: string;
+  };
+}
+interface ThemeProps {
+  theme: Colors;
+}
+
+const lightTheme: Colors = {
+  colors: {
+    primary: "blue",
+    secondary: "green",
+    background: "white",
+    text: "black",
+  },
+};
+
+const darkTheme: Colors = {
+  colors: {
+    primary: "purple",
+    secondary: "orange",
+    background: "black",
+    text: "white",
+  },
+};
+
+export { theme, lightTheme, darkTheme };
