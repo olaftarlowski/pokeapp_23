@@ -1,8 +1,9 @@
 
-import { useParams } from "react-router";
 import { useEffect, useState } from "react"
+import { useParams } from "react-router";
 import { fetchSingleKanto } from "../utils/api"
-import PokeSingleItem from "../components/PokeSingleItem/PokeSIngleItem";
+import { PokeSingleItem } from "../components/PokeSingleItem";
+import { LoadingSpinner } from "../components/common";
 
 interface SingleRecord {
     id: number,
@@ -14,46 +15,49 @@ interface SingleRecord {
 }
 
 const PokeSingle = () => {
-    const params = useParams()
+    const { pokeNameCode } = useParams<Record<string, string | undefined>>()
 
-    const name: any = params.pokeNameCode
-    console.log(name);
-
-
-    const [data, setData] = useState<SingleRecord | null>(null)
-    const [hasError, setHasError] = useState<boolean>(false)
-
-    const getData = async () => {
-        const dataReceived = await fetchSingleKanto(name)
-        // console.log(dataReceived);
-        if (dataReceived === null) {
-            setHasError(true)
-            return
-        } else if (dataReceived) {
-            setData(dataReceived?.data)
-        }
-    }
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<boolean>(false);
+    const [pokemon, setPokemon] = useState<SingleRecord | null>(null);
 
     useEffect(() => {
-        getData()
-    }, [])
+        const fetchData = async () => {
+            try {
+                const result = await fetchSingleKanto(pokeNameCode);
+                if (result === null) {
+                    setError(true);
+                } else {
+                    setPokemon(result.data);
+                }
+            } catch (error) {
+                setError(true);
+            } finally {
+                setLoading(false);
+            }
+        };
 
+        fetchData();
+    }, [pokeNameCode]);
 
+    return (
+        <div>
+            {loading && <LoadingSpinner />}
+            {error && <p>An error has occured...</p>}
+            {pokemon && (
+                <PokeSingleItem
+                    id={pokemon.id}
+                    name={pokemon.name}
+                    sprite={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+                    height={pokemon.height}
+                    weight={pokemon.weight}
+                    types={pokemon.types}
+                    moves={pokemon.moves}
+                />
 
-
-    return <div>
-        {data ? (
-            <>
-                <PokeSingleItem id={data.id} name={data.name} sprite={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data.id}.png`} height={data.height} weight={data.weight} types={data.types} moves={data.moves} />
-                <div key={data.id} ><div><h6 >{data.id}.  {data.name}</h6></div>
-                    <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${data.id}.png`} alt="" /></div>
-            </>
-        ) : (
-            <p>Loading...</p>
-
-        )}
-        {hasError && <p>An error has occured...</p>}
-    </div>;
+            )}
+        </div>
+    );
 };
 
 export default PokeSingle;

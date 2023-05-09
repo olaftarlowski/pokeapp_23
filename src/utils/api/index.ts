@@ -33,7 +33,7 @@ const fetchSingleKantoRandom = async () => {
   return response;
 };
 
-const fetchSingleKanto = async (recordName: string) => {
+const fetchSingleKanto = async (recordName: string | undefined) => {
   console.log("SingleItem choosen: ", recordName);
 
   const response = await api.get(`pokemon/${recordName}/`).catch((error) => {
