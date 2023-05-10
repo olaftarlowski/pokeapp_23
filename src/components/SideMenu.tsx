@@ -1,6 +1,21 @@
 import Sidebar from "react-sidebar";
 import { useState } from "react";
 
+
+
+import styled from "styled-components";
+
+interface SideMenuWrapperProps {
+  sideMenuToggleDist: number;
+}
+
+const SideMenuWrapper = styled.div`
+  background-color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.text};
+  width: 100%;
+  height: 100%;
+`;
+
 const SideMenu = () => {
   const [sideMenuToggle, setSideMenuToggle] = useState<boolean>(false);
   const [sideMenuToggleDist, setSideMenuToggleDist] = useState<number>(0);
@@ -16,14 +31,15 @@ const SideMenu = () => {
 
   return (
     <Sidebar
-      sidebar={<b>Sidebar content</b>}
+      sidebar={<SideMenuWrapper>asdadasdas <div>Sidebar content</div></SideMenuWrapper>}
       open={sideMenuToggle}
       onSetOpen={sideMenuTogglehandler}
+      // pullRight={true}
       styles={{
         root: {
           position: "relative",
         },
-        sidebar: { background: "white", position: "fixed" },
+        sidebar: { position: "fixed", height: "80%", top: "10%", },
         content: {
           position: "fixed",
           inset: `50% 0px 0px 0px`,

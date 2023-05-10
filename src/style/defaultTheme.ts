@@ -7,46 +7,48 @@ export type MainTheme = DefaultTheme & {
     smallMobile: number;
     mobile: number;
   };
+  colors: {
+    background: string;
+    text: string;
+    primary: string;
+    secondary: string;
+    active: string;
+  };
+};
+
+const breakpoints = {
+  desktop: 1440,
+  tablet: 900,
+  smallMobile: 400,
+  mobile: 768,
+};
+
+const colors = {
+  background: "#fff",
+  text: "#000",
+  primary: "#f8fafd",
+  secondary: "yellow",
+  active: "#3861fb",
+  border: "#d2d2d2",
+};
+
+const darkColors = {
+  background: "#000",
+  text: "#fff",
+  primary: "#232323",
+  secondary: "green",
+  active: "#fff",
+  border: "#000",
 };
 
 const theme: MainTheme = {
-  breakpoints: {
-    desktop: 1440,
-    tablet: 900,
-    smallMobile: 400,
-    mobile: 768,
-  },
+  breakpoints,
+  colors,
 };
 
-//////////////////////
-interface Colors {
-  colors: {
-    primary: string;
-    secondary: string;
-    background: string;
-    text: string;
-  };
-}
-interface ThemeProps {
-  theme: Colors;
-}
-
-const lightTheme: Colors = {
-  colors: {
-    primary: "blue",
-    secondary: "green",
-    background: "white",
-    text: "black",
-  },
+const darkTheme: MainTheme = {
+  breakpoints,
+  colors: darkColors,
 };
 
-const darkTheme: Colors = {
-  colors: {
-    primary: "purple",
-    secondary: "orange",
-    background: "black",
-    text: "white",
-  },
-};
-
-export { theme, lightTheme, darkTheme };
+export { theme, darkTheme };

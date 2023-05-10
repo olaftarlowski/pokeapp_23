@@ -13,18 +13,19 @@ export const RootLayoutWrapper = styled.div`
 export const HomeWrapper = styled.div``;
 
 export const HeaderWrapper = styled.header`
-  background: #f8fafd;
+  background-color: ${(props) => props.theme.colors.primary};
   width: 100%;
-  border: 1px solid #d2d2d2;
+  border: 1px solid ${(props) => props.theme.colors.border};
   position: sticky;
   top: 0;
   right: 0;
   left: 0;
   z-index: 10000;
+
   .header__content {
     height: 100%;
     padding: 0 48px;
-    color: #000;
+    color: ${(props) => props.theme.colors.text};
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -57,7 +58,7 @@ export const HeaderWrapper = styled.header`
 
 export const NavbarWrapper = styled.nav`
   width: 100%;
-  background-color: #f8fafd;
+  background: ${(props) => props.theme.colors.primary};
   display: flex;
   align-items: center;
   ul {
@@ -87,7 +88,7 @@ export const NavbarWrapper = styled.nav`
         color: inherit;
         padding: 4px 6px;
         transition: 0.3s ease all;
-        border-bottom: 1px solid #d2d2d2;
+        border-bottom: 1px solid ${(props) => props.theme.colors.border};
         @media (max-width: 768px) {
           font-size: 1.5rem;
           padding: 0.5rem 2rem;
@@ -98,8 +99,8 @@ export const NavbarWrapper = styled.nav`
         }
         &:hover,
         &.active {
-          color: #3861fb;
-          border-bottom: 1px solid #3861fb;
+          color: ${(props) => props.theme.colors.active};
+          border-bottom: 1px solid ${(props) => props.theme.colors.active};
         }
       }
     }
