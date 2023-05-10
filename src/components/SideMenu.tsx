@@ -1,59 +1,56 @@
+import { ReactNode, useState } from "react";
 import Sidebar from "react-sidebar";
-import { useState } from "react";
+
+import { SideMenuWrapper } from "../style/styled-components";
 
 
-
-import styled from "styled-components";
-
-interface SideMenuWrapperProps {
-  sideMenuToggleDist: number;
+interface SideMenuProps {
+  positionToRight: boolean, children: ReactNode
 }
 
-const SideMenuWrapper = styled.div`
-  background-color: ${(props) => props.theme.colors.primary};
-  color: ${(props) => props.theme.colors.text};
-  width: 100%;
-  height: 100%;
-`;
-
-const SideMenu = () => {
+const SideMenu = ({ positionToRight, children }: SideMenuProps) => {
   const [sideMenuToggle, setSideMenuToggle] = useState<boolean>(false);
   const [sideMenuToggleDist, setSideMenuToggleDist] = useState<number>(0);
 
   const sideMenuTogglehandler = () => {
-    setSideMenuToggle((e) => !e);
-    if (!sideMenuToggle) {
-      setSideMenuToggleDist(120);
-    } else {
-      setSideMenuToggleDist(0);
+    setSideMenuToggle((prevState) => !prevState);
+    setSideMenuToggleDist((prevState) =>
+      prevState === 0 ? (positionToRight ? -120 : 120) : 0
+    );
+  };
+
+  const sidebarStyles = {
+    root: {
+      position: "relative"
+    },
+    sidebar: {
+      position: "fixed",
+      height: "80%",
+      top: "10%"
+    },
+    content: {
+      position: "fixed",
+      inset: `50% 0px 0px ${positionToRight ? "auto" : "0px"}`,
+      width: "90px",
+      height: "50px",
+      transform: `translateX(${sideMenuToggleDist}px)`,
+      transition: "transform 0.3s ease-out 0s",
+      zIndex: "100"
+    },
+    overlay: {
+      display: "none"
     }
   };
 
   return (
     <Sidebar
-      sidebar={<SideMenuWrapper>asdadasdas <div>Sidebar content</div></SideMenuWrapper>}
+      sidebar={<SideMenuWrapper>{children}</SideMenuWrapper>}
       open={sideMenuToggle}
       onSetOpen={sideMenuTogglehandler}
-      // pullRight={true}
-      styles={{
-        root: {
-          position: "relative",
-        },
-        sidebar: { position: "fixed", height: "80%", top: "10%", },
-        content: {
-          position: "fixed",
-          inset: `50% 0px 0px 0px`,
-          width: "90px",
-          height: "50px",
-          transform: `translateX(${sideMenuToggleDist}px)`,
-          transition: "transform 0.3s ease-out 0s",
-        },
-        overlay: {
-          display: "none",
-        },
-      }}
+      pullRight={positionToRight}
+      styles={sidebarStyles}
     >
-      <button onClick={sideMenuTogglehandler}>Open sidebar</button>
+      <button onClick={sideMenuTogglehandler}>Open {positionToRight ? "Enemy" : "Player"}</button>
     </Sidebar>
   );
 };

@@ -23,7 +23,10 @@ const RootLayout = () => {
                 <button onClick={toggleTheme}>
                     {isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                 </button>
-                <SideMenu />
+                <SideMenu positionToRight={false}>
+                    <div>asd</div>
+                </SideMenu>
+                <SideMenu positionToRight={true}> <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias itaque dolore aut reiciendis. Recusandae, expedita. Debitis dicta autem ratione minus ipsam, iste, voluptatem cumque quasi inventore id quisquam nesciunt voluptas.</p></SideMenu>
                 <main>
                     <Outlet />
                 </main>

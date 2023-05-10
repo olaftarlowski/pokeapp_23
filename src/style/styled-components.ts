@@ -117,3 +117,10 @@ export const PokeListWrapper = styled.div`
     flex-wrap: wrap;
   }
 `;
+
+export const SideMenuWrapper = styled.div`
+  background-color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.text};
+  width: 120px;
+  height: 100%;
+`;
