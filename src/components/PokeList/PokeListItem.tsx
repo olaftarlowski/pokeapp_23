@@ -1,6 +1,7 @@
 import React from "react";
-import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
+import LazyLoad from "react-lazyload";
+import ContentLoader from "react-content-loader";
 
 import styled from "styled-components";
 import { keyframes } from "styled-components";
@@ -147,7 +148,7 @@ const TextboxInfo = styled.div`
 interface PokeListItem {
   id: number
   name: string
-  sprite: string
+  sprite: string | undefined
 }
 
 const PokeListItem = React.memo(({ id, name, sprite }: PokeListItem) => {
@@ -155,7 +156,13 @@ const PokeListItem = React.memo(({ id, name, sprite }: PokeListItem) => {
     <ItemWrapper>
       <FigureItem>
         <LazyLoad height={200}>
-          <img className="card-img" src={sprite} alt={`Pokemon ${name}`} />
+          {sprite ? (
+            <img className="card-img" src={sprite} alt={`Pokemon ${name}`} />
+          ) : (
+            <ContentLoader>
+              <rect x="0" y="0" rx="5" ry="5" width="140" height="140" />
+            </ContentLoader>
+          )}
         </LazyLoad>
       </FigureItem>
       <TextboxInfo>

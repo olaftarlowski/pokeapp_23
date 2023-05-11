@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { darkTheme, theme as lightTheme } from "../style/defaultTheme"
 import { ThemeProvider } from 'styled-components';
 import { Header } from '../section'
@@ -9,7 +9,20 @@ import { GlobalStyle } from '../style/GlobalStyle';
 
 
 const RootLayout = () => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const getLocalStorage = (themeOption: string): boolean => {
+        const dataOption = localStorage.getItem(themeOption);
+        if (dataOption === "true") {
+            return true;
+        }
+        return false;
+    };
+
+    const [isDarkMode, setIsDarkMode] = useState<boolean>(getLocalStorage("isDarkMode"));
+
+    useEffect(() => {
+        localStorage.setItem("isDarkMode", JSON.stringify(isDarkMode));
+    }, [isDarkMode]);
+
 
     const toggleTheme = () => {
         setIsDarkMode(!isDarkMode);

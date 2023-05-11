@@ -34,7 +34,7 @@ const PokeList = () => {
                 })}
             </>
         ) : (
-            <LoadingSpinner/>
+            <LoadingSpinner />
         )}
             {hasError && <p>An error has occured...</p>}</PokeListWrapper>
     )
