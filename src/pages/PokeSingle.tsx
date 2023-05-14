@@ -5,6 +5,7 @@ import { fetchSingleKanto } from "../utils/api"
 import { PokeSingleItem } from "../components/PokeSingleItem";
 import { LoadingSpinner } from "../components/common";
 import { ErrorPage } from "../components";
+import BackButton from "../components/common/BackButton";
 
 interface SingleRecord {
     id: number,
@@ -43,7 +44,7 @@ const PokeSingle = () => {
 
     return (
         <div>
-
+            <BackButton />
             {loading && <LoadingSpinner />}
             {error && <ErrorPage />}
             {pokemon && (

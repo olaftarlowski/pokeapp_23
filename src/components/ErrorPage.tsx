@@ -20,8 +20,9 @@ const ErrorPage = () => {
     } else if (error instanceof Error) {
         return (
             <div id="error-page">
+                <Link to="/">Back to homepage</Link>
                 <h1>Oops! Unexpected Error</h1>
-                <p>Something went wrong.</p>
+                <p>Something went wrong.XXX</p>
                 <p>
                     <i>{error.message}</i>
                 </p>

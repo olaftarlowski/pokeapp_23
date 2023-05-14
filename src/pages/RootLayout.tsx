@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLoaderData } from 'react-router-dom'
 import { useEffect, useState } from "react";
 import { darkTheme, theme as lightTheme } from "../style/defaultTheme"
 import { ThemeProvider } from 'styled-components';
@@ -7,22 +7,27 @@ import { RootLayoutWrapper } from '../style/styled-components'
 import { SideMenu } from '../components';
 import { GlobalStyle } from '../style/GlobalStyle';
 
+const getLocalStorage = (themeOption: string): boolean => {
+    const dataOption = localStorage.getItem(themeOption);
+    if (dataOption === "true") {
+        return true;
+    }
+    return false;
+};
+
+type Single = { entry_number: number, pokemon_species: { name: string } }
+type Record = { pokemon_entries: Single[] }
+
+type RootData = { data: Record };
+
 
 const RootLayout = () => {
-    const getLocalStorage = (themeOption: string): boolean => {
-        const dataOption = localStorage.getItem(themeOption);
-        if (dataOption === "true") {
-            return true;
-        }
-        return false;
-    };
-
+    const kantoData = useLoaderData() as RootData;
     const [isDarkMode, setIsDarkMode] = useState<boolean>(getLocalStorage("isDarkMode"));
 
     useEffect(() => {
         localStorage.setItem("isDarkMode", JSON.stringify(isDarkMode));
-    }, [isDarkMode]);
-
+    }, [isDarkMode])
 
     const toggleTheme = () => {
         setIsDarkMode(!isDarkMode);
@@ -41,7 +46,7 @@ const RootLayout = () => {
                 </SideMenu>
                 <SideMenu positionToRight={true}> <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias itaque dolore aut reiciendis. Recusandae, expedita. Debitis dicta autem ratione minus ipsam, iste, voluptatem cumque quasi inventore id quisquam nesciunt voluptas.</p></SideMenu>
                 <main>
-                    <Outlet />
+                    <Outlet context={kantoData} />
                 </main>
                 <footer>
                     <hr />

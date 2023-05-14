@@ -124,3 +124,23 @@ export const SideMenuWrapper = styled.div`
   width: 120px;
   height: 100%;
 `;
+
+
+export const BackButtonWrapper = styled.div`
+  display: inline-block;
+  /* padding: 10px 20px; */
+  background-color: #ccc;
+  color: #333;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #bbb;
+  }
+  a {
+    display:inline-block;
+    width:100%;
+    height:100%;
+    margin: 10px 20px;
+  }
+`;

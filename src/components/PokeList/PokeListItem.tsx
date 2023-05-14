@@ -155,7 +155,7 @@ const PokeListItem = React.memo(({ id, name, sprite }: PokeListItem) => {
   return (
     <ItemWrapper>
       <FigureItem>
-        <LazyLoad height={200}>
+        <LazyLoad height={50}>
           {sprite ? (
             <img className="card-img" src={sprite} alt={`Pokemon ${name}`} />
           ) : (
@@ -171,7 +171,7 @@ const PokeListItem = React.memo(({ id, name, sprite }: PokeListItem) => {
       </TextboxInfo>
       <div className="controls-area">
         <button className="control-item">Add</button>
-        <Link className="control-item" to={`/${name}`}>
+        <Link className="control-item" to={`${name}`}>
           More
         </Link>
       </div>
