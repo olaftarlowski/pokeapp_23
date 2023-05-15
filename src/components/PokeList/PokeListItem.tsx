@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
 import ContentLoader from "react-content-loader";
 
 import styled from "styled-components";
 import { keyframes } from "styled-components";
+import { PokeListContext } from "../../store/AppContext";
 
 const moveImage = keyframes`
   from {
@@ -152,6 +153,19 @@ interface PokeListItem {
 }
 
 const PokeListItem = React.memo(({ id, name, sprite }: PokeListItem) => {
+  const { addRecord } = useContext(PokeListContext);
+  const recordData = { id, name, sprite }
+  // const [selectedRecords, setSelectedRecords] = useState<PokeListItem[]>([]);
+
+  // const handleAddRecord = ({ id, name, sprite }: PokeListItem) => {
+  //   if (selectedRecords.length < 3) {
+  //     setSelectedRecords([...selectedRecords, { id, name, sprite }]);
+  //   }
+  // };
+  const handleAddRecord = (recordData: PokeListItem) => {
+    addRecord(recordData);
+  };
+
   return (
     <ItemWrapper>
       <FigureItem>
@@ -170,7 +184,7 @@ const PokeListItem = React.memo(({ id, name, sprite }: PokeListItem) => {
         <h3 className="card-headline">{name}</h3>
       </TextboxInfo>
       <div className="controls-area">
-        <button className="control-item">Add</button>
+        <button className="control-item" onClick={() => handleAddRecord(recordData)}>Add</button>
         <Link className="control-item" to={`${name}`}>
           More
         </Link>
