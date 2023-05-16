@@ -1,13 +1,9 @@
 import React, { createContext, useState } from 'react';
+import { PokeListSingle } from '../utils/types/pokeList';
 
-interface PokeListItem {
-    id: number
-    name: string
-    sprite: string | undefined
-}
 interface PokeListContextType {
-    selectedRecords: PokeListItem[];
-    addRecord: (record: PokeListItem) => void;
+    selectedRecords: PokeListSingle[];
+    addRecord: (record: PokeListSingle) => void;
 }
 
 export const PokeListContext = createContext<PokeListContextType>({
@@ -16,9 +12,9 @@ export const PokeListContext = createContext<PokeListContextType>({
 });
 
 export const PokeListProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [selectedRecords, setSelectedRecords] = useState<PokeListItem[]>([]);
+    const [selectedRecords, setSelectedRecords] = useState<PokeListSingle[]>([]);
 
-    const addRecord = (record: PokeListItem) => {
+    const addRecord = (record: PokeListSingle) => {
         if (selectedRecords.length < 3) {
             setSelectedRecords([...selectedRecords, record]);
         }

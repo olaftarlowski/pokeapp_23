@@ -7,6 +7,7 @@ import { RootLayoutWrapper } from '../style/styled-components'
 import { SideMenu } from '../components';
 import { GlobalStyle } from '../style/GlobalStyle';
 import { PokeListContext } from '../store/AppContext';
+import { ApiData } from '../utils/types/pokeList';
 
 const getLocalStorage = (themeOption: string): boolean => {
     const dataOption = localStorage.getItem(themeOption);
@@ -16,14 +17,8 @@ const getLocalStorage = (themeOption: string): boolean => {
     return false;
 };
 
-type Single = { entry_number: number, pokemon_species: { name: string } }
-type Record = { pokemon_entries: Single[] }
-
-type RootData = { data: Record };
-
-
 const RootLayout = () => {
-    const kantoData = useLoaderData() as RootData;
+    const kantoData = useLoaderData() as ApiData;
     const { selectedRecords } = useContext(PokeListContext);
 
     const [isDarkMode, setIsDarkMode] = useState<boolean>(getLocalStorage("isDarkMode"));
@@ -38,7 +33,7 @@ const RootLayout = () => {
 
     const checkContext = () => {
         console.log(selectedRecords);
-        
+
     }
 
     return (

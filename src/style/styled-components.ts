@@ -125,7 +125,6 @@ export const SideMenuWrapper = styled.div`
   height: 100%;
 `;
 
-
 export const BackButtonWrapper = styled.div`
   display: inline-block;
   /* padding: 10px 20px; */
@@ -138,9 +137,9 @@ export const BackButtonWrapper = styled.div`
     background-color: #bbb;
   }
   a {
-    display:inline-block;
-    width:100%;
-    height:100%;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
     margin: 10px 20px;
   }
 `;

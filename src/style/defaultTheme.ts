@@ -1,20 +1,4 @@
-import { DefaultTheme } from "styled-components";
-
-export type MainTheme = DefaultTheme & {
-  breakpoints: {
-    desktop: number;
-    tablet: number;
-    smallMobile: number;
-    mobile: number;
-  };
-  colors: {
-    background: string;
-    text: string;
-    primary: string;
-    secondary: string;
-    active: string;
-  };
-};
+import { MainTheme } from "../utils/types/mainTheme";
 
 const breakpoints = {
   desktop: 1440,

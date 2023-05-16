@@ -4,15 +4,11 @@ import { PokeListWrapper } from "../../style/styled-components"
 import { PokeListItem } from "./"
 import { LoadingSpinner } from "../common"
 import { useOutletContext } from "react-router-dom"
+import { Single, ApiData } from "../../utils/types/pokeList"
 
 function useKanto() {
-    return useOutletContext<RootData | undefined>();
+    return useOutletContext<ApiData | undefined>();
 }
-
-type Single = { entry_number: number, pokemon_species: { name: string } }
-type Record = { pokemon_entries: Single[] }
-
-type RootData = { data: Record };
 
 const PokeList = () => {
     const kantoData = useKanto();
@@ -34,7 +30,7 @@ const PokeList = () => {
         <PokeListWrapper>
             {data?.length !== 0 ? (
                 <>
-                    {data?.map((item: { pokemon_species: { name: string, }, entry_number: number }) => {
+                    {data?.map((item: Single) => {
                         return <PokeListItem key={item.entry_number} id={item.entry_number} name={item.pokemon_species.name} sprite={`${imageLink}${item.entry_number}.png`}></PokeListItem>
                     })}
                 </>

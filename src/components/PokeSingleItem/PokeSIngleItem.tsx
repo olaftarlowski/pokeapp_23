@@ -1,23 +1,5 @@
+import { PokeSingleInterface, PokeMove, PokeTypes } from "../../utils/types/pokeList";
 import styles from "./PokeSingleItem.module.css";
-type PokeTypes = {
-    type: {
-        name: string
-    }
-}
-type PokeMove = {
-    move: {
-        name: string
-    }
-}
-interface PokeSingleInterface {
-    id: number
-    name: string
-    sprite: string
-    height: number
-    weight: number
-    types: PokeTypes[]
-    moves: PokeMove[]
-}
 
 const PokeSingleItem = ({ id, name, sprite, height, weight, types, moves }: PokeSingleInterface) => {
 

@@ -1,15 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-
-interface ThemeProps {
-  theme: {
-    colors: {
-      primary: string;
-      secondary: string;
-      background: string;
-      text: string;
-    };
-  };
-}
+import { ThemeProps  } from "../utils/types/mainTheme";
 
 export const GlobalStyle = createGlobalStyle<ThemeProps>`
     body {

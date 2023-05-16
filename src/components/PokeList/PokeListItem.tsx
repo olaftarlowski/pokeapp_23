@@ -6,6 +6,7 @@ import ContentLoader from "react-content-loader";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { PokeListContext } from "../../store/AppContext";
+import { PokeListSingle } from '../../utils/types/pokeList'
 
 const moveImage = keyframes`
   from {
@@ -146,13 +147,7 @@ const TextboxInfo = styled.div`
   }
 `;
 
-interface PokeListItem {
-  id: number
-  name: string
-  sprite: string | undefined
-}
-
-const PokeListItem = React.memo(({ id, name, sprite }: PokeListItem) => {
+const PokeListItem = React.memo(({ id, name, sprite }: PokeListSingle) => {
   const { addRecord } = useContext(PokeListContext);
   const recordData = { id, name, sprite }
   // const [selectedRecords, setSelectedRecords] = useState<PokeListItem[]>([]);
@@ -162,7 +157,7 @@ const PokeListItem = React.memo(({ id, name, sprite }: PokeListItem) => {
   //     setSelectedRecords([...selectedRecords, { id, name, sprite }]);
   //   }
   // };
-  const handleAddRecord = (recordData: PokeListItem) => {
+  const handleAddRecord = (recordData: PokeListSingle) => {
     addRecord(recordData);
   };
 

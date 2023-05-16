@@ -1,27 +1,18 @@
-
 import { useEffect, useState } from "react"
 import { useParams } from "react-router";
 import { fetchSingleKanto } from "../utils/api"
 import { PokeSingleItem } from "../components/PokeSingleItem";
-import { LoadingSpinner } from "../components/common";
+import { LoadingSpinner, BackButton } from "../components/common";
 import { ErrorPage } from "../components";
-import BackButton from "../components/common/BackButton";
+import { PokeSingleInterface } from "../utils/types/pokeList";
 
-interface SingleRecord {
-    id: number,
-    name: string
-    weight: number
-    height: number
-    types: { type: { name: string } }[]
-    moves: { move: { name: string } }[]
-}
 
 const PokeSingle = () => {
     const { pokeNameCode } = useParams<Record<string, string | undefined>>()
 
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
-    const [pokemon, setPokemon] = useState<SingleRecord | null>(null);
+    const [pokemon, setPokemon] = useState<PokeSingleInterface | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
