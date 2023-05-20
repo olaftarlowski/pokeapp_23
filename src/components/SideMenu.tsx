@@ -1,7 +1,9 @@
 import { ReactNode, useState } from "react";
 import Sidebar from "react-sidebar";
 
+// import {ReactComponent as ArrowIcon} from '../assets/arrow.svg'
 import { SideMenuWrapper } from "../style/styled-components";
+import { ArrowOpen } from "./common/ArrowOpen";
 
 
 interface SideMenuProps {
@@ -15,7 +17,7 @@ const SideMenu = ({ positionToRight, children }: SideMenuProps) => {
   const sideMenuTogglehandler = () => {
     setSideMenuToggle((prevState) => !prevState);
     setSideMenuToggleDist((prevState) =>
-      prevState === 0 ? (positionToRight ? -120 : 120) : 0
+      prevState === 0 ? (positionToRight ? -150 : 150) : 0
     );
   };
 
@@ -30,9 +32,9 @@ const SideMenu = ({ positionToRight, children }: SideMenuProps) => {
     },
     content: {
       position: "fixed",
-      inset: `50% 0px 0px ${positionToRight ? "auto" : "0px"}`,
-      width: "90px",
-      height: "50px",
+      inset: `calc(50% - 60px) 0px 0px ${positionToRight ? "auto" : "0px"}`,
+      width: "40px",
+      // height: "50px",
       transform: `translateX(${sideMenuToggleDist}px)`,
       transition: "transform 0.3s ease-out 0s",
       zIndex: "100"
@@ -50,7 +52,11 @@ const SideMenu = ({ positionToRight, children }: SideMenuProps) => {
       pullRight={positionToRight}
       styles={sidebarStyles}
     >
-      <button onClick={sideMenuTogglehandler}>Open {positionToRight ? "Enemy" : "Player"}</button>
+      
+
+{/* <ArrowIcon/> */}
+<ArrowOpen toggle={sideMenuTogglehandler} sideMenuToggle={sideMenuToggle} color="white" arrowToRight={positionToRight}/>
+      {/* <button onClick={sideMenuTogglehandler}>Open {positionToRight ? "Enemy" : "Player"}</button> */}
     </Sidebar>
   );
 };
