@@ -12,7 +12,7 @@ export const RootLayoutWrapper = styled.div`
 
 export const HomeWrapper = styled.div``;
 
-export const HeaderWrapper = styled.header`
+export const HeaderWrapper = styled.header<{ height: number }>`
   background-color: ${(props) => props.theme.colors.primary};
   width: 100%;
   border: 1px solid ${(props) => props.theme.colors.border};
@@ -32,10 +32,11 @@ export const HeaderWrapper = styled.header`
     justify-content: space-between;
     position: relative;
     z-index: 100;
+
     .ReactCollapse--collapse {
       position: absolute;
 
-      top: 50px;
+      top: ${(props) => `${props.height}px`};
       right: 0;
       transition: height 500ms;
     }
@@ -121,8 +122,10 @@ export const PokeListWrapper = styled.div`
 export const SideMenuWrapper = styled.div`
   background-color: ${(props) => props.theme.colors.primary};
   color: ${(props) => props.theme.colors.text};
-  width: 120px;
+  width: 150px;
   height: 100%;
+  padding: 12px 24px;
+  border: 1px solid red;
 `;
 
 export const BackButtonWrapper = styled.div`

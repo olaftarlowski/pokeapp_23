@@ -8,7 +8,7 @@ import { HeaderWrapper } from "../style/styled-components"
 
 const Header = () => {
     const [isNavExpanded, setIsNavExpanded] = useState<boolean>(false);
-    const [headerHeight, setHeaderHeight] = useState<number | null>(null);
+    const [headerHeight, setHeaderHeight] = useState<number>(90);
     const isMobile: boolean = useIsMobile();
     const headerRef = useRef<HTMLElement>(null);
 
@@ -31,7 +31,7 @@ const Header = () => {
 
     return (
         <HeaderWrapper ref={headerRef}
-        // headerHeight={headerHeight}
+        height={headerHeight}
         >
             <div className="header__content">
                 <div className="logosDIV">
