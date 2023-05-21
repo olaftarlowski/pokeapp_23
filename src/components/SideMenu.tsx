@@ -52,11 +52,11 @@ const SideMenu = ({ positionToRight, children }: SideMenuProps) => {
       pullRight={positionToRight}
       styles={sidebarStyles}
     >
-      
-
-{/* <ArrowIcon/> */}
-<ArrowOpen toggle={sideMenuTogglehandler} sideMenuToggle={sideMenuToggle} color="white" arrowToRight={positionToRight}/>
-      {/* <button onClick={sideMenuTogglehandler}>Open {positionToRight ? "Enemy" : "Player"}</button> */}
+      <ArrowOpen
+        toggle={sideMenuTogglehandler}
+        sideMenuToggle={sideMenuToggle}
+        // color="white"
+        arrowToRight={positionToRight} />
     </Sidebar>
   );
 };

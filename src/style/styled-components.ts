@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { SvgOpenArrow } from "../utils/types/commons";
 import backgroundImage from "../assets/container_bg.png";
 
 export const RootLayoutWrapper = styled.div`
@@ -144,5 +145,57 @@ export const BackButtonWrapper = styled.div`
     width: 100%;
     height: 100%;
     margin: 10px 20px;
+  }
+`;
+
+export const OpenButtonWrapper = styled.button<Omit<SvgOpenArrow, "toggle">>`
+  width: 40px;
+  height: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  animation: ${(props) =>
+    props.sideMenuToggle
+      ? `rotateButton 0.5s linear`
+      : `rotateButtonBack 0.5s linear`};
+
+  svg {
+    transform: rotate(
+        ${(props) =>
+          props.arrowToRight && !props.sideMenuToggle
+            ? "90deg"
+            : props.arrowToRight && props.sideMenuToggle
+            ? "270deg"
+            : !props.arrowToRight && props.sideMenuToggle
+            ? "90deg"
+            : "270deg"}
+      )
+      scale(3, 1);
+
+    path {
+      fill: ${(props) => props.theme.colors.primary};
+    }
+  }
+  @keyframes rotateButton {
+    from {
+      transform: rotateY(180deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+
+  @keyframes rotateButtonBack {
+    from {
+      transform: rotateY(180deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
   }
 `;
