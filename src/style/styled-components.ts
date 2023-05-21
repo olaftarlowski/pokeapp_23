@@ -151,11 +151,12 @@ export const BackButtonWrapper = styled.div`
 export const OpenButtonWrapper = styled.button<Omit<SvgOpenArrow, "toggle">>`
   width: 40px;
   height: 120px;
-
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
+  border: 1px solid ${(props) => props.theme.colors.secondary};
   outline: none;
   cursor: pointer;
 
@@ -178,7 +179,7 @@ export const OpenButtonWrapper = styled.button<Omit<SvgOpenArrow, "toggle">>`
       scale(3, 1);
 
     path {
-      fill: ${(props) => props.theme.colors.primary};
+      fill: #f2f2f2;
     }
   }
   @keyframes rotateButton {

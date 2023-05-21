@@ -1,7 +1,6 @@
 import { ReactNode, useState } from "react";
 import Sidebar from "react-sidebar";
 
-// import {ReactComponent as ArrowIcon} from '../assets/arrow.svg'
 import { SideMenuWrapper } from "../style/styled-components";
 import { ArrowOpen } from "./common/ArrowOpen";
 
@@ -55,7 +54,6 @@ const SideMenu = ({ positionToRight, children }: SideMenuProps) => {
       <ArrowOpen
         toggle={sideMenuTogglehandler}
         sideMenuToggle={sideMenuToggle}
-        // color="white"
         arrowToRight={positionToRight} />
     </Sidebar>
   );
