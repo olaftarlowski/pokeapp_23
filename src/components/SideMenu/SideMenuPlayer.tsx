@@ -14,8 +14,8 @@ const SideMenuPlayer: React.FC = () => {
   const { selectedRecords, removeElement } = useContext(PokeListContext);
   const [isDragging, setIsDragging] = useState(false);
 
-  const handleDragStart = (event: React.DragEvent<HTMLDivElement>, index: number, item:any) => {
-    console.log(item.id);
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>, index: number, item: any) => {
+    console.log(event.dataTransfer);
 
     event.dataTransfer.setData('text/plain', item.id);
     setIsDragging(true);
