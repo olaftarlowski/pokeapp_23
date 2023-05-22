@@ -4,11 +4,10 @@ import { darkTheme, theme as lightTheme } from "../style/defaultTheme"
 import { ThemeProvider } from 'styled-components';
 import { Header } from '../section'
 import { RootLayoutWrapper } from '../style/styled-components'
-import { SideMenu } from '../components';
+import { SideMenu, SideMenuPlayer } from '../components/SideMenu';
 import { GlobalStyle } from '../style/GlobalStyle';
 import { PokeListContext } from '../store/AppContext';
 import { ApiData } from '../utils/types/pokeList';
-import SideMenuPlayer from '../components/SideMenuPlayer';
 
 const getLocalStorage = (themeOption: string): boolean => {
     const dataOption = localStorage.getItem(themeOption);
@@ -45,10 +44,10 @@ const RootLayout = () => {
                 <button onClick={toggleTheme}>
                     {isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                 </button>
+                <button onClick={checkContext}>check global state</button>
                 <SideMenu positionToRight={false}>
-                    <div>asd</div>
-                    <button onClick={checkContext}>chech global state</button>
-                    <SideMenuPlayer/>
+                    <h2>Player team</h2>
+                    <SideMenuPlayer />
                 </SideMenu>
                 <SideMenu positionToRight={true}> <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias itaque dolore aut reiciendis. Recusandae, expedita. Debitis dicta autem ratione minus ipsam, iste, voluptatem cumque quasi inventore id quisquam nesciunt voluptas.</p></SideMenu>
                 <main>

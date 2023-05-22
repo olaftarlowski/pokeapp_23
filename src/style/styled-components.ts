@@ -200,3 +200,16 @@ export const OpenButtonWrapper = styled.button<Omit<SvgOpenArrow, "toggle">>`
     }
   }
 `;
+
+export const SideMenuItemWrapper = styled.div`
+  width: 100px;
+  height: 100px;
+  padding: 6px;
+  border: 2px solid green;
+  border-radius: 10px;
+  margin: 12px 0;
+
+  img {
+    border-radius: inherit;
+  }
+`;

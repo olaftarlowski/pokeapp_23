@@ -23,7 +23,7 @@ const router = createBrowserRouter(
       loader={Rootloader}
     >
       <Route path="/" element={<Navigate to="kanto" />} />
-      <Route path="kanto" element={<Home />} > </Route>
+      <Route path="kanto" element={<Home />} />
       <Route path="overview" element={<Overview />} />
       <Route path="single" element={<SingleItem />} />
       <Route path="/:page/:pokeNameCode" element={<PokeSingle />} />

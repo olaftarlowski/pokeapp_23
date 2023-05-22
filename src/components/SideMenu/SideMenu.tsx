@@ -1,8 +1,8 @@
 import { ReactNode, useState } from "react";
 import Sidebar from "react-sidebar";
 
-import { SideMenuWrapper } from "../style/styled-components";
-import { ArrowOpen } from "./common/ArrowOpen";
+import { SideMenuWrapper } from "../../style/styled-components";
+import { ArrowOpen } from "../common/ArrowOpen";
 
 
 interface SideMenuProps {
@@ -33,7 +33,6 @@ const SideMenu = ({ positionToRight, children }: SideMenuProps) => {
       position: "fixed",
       inset: `calc(50% - 60px) 0px 0px ${positionToRight ? "auto" : "0px"}`,
       width: "40px",
-      // height: "50px",
       transform: `translateX(${sideMenuToggleDist}px)`,
       transition: "transform 0.3s ease-out 0s",
       zIndex: "100"
