@@ -3,3 +3,8 @@ export interface SvgOpenArrow {
   arrowToRight: boolean;
   sideMenuToggle: boolean;
 }
+
+export interface SvgOpenArrowProps {
+  $arrowToRight: boolean;
+  $sideMenuToggle: boolean;
+}

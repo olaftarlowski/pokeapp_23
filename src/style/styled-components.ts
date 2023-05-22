@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SvgOpenArrow } from "../utils/types/commons";
+import { SvgOpenArrowProps } from "../utils/types/commons";
 import backgroundImage from "../assets/container_bg.png";
 
 export const RootLayoutWrapper = styled.div`
@@ -148,7 +148,7 @@ export const BackButtonWrapper = styled.div`
   }
 `;
 
-export const OpenButtonWrapper = styled.button<Omit<SvgOpenArrow, "toggle">>`
+export const OpenButtonWrapper = styled.button<SvgOpenArrowProps>`
   width: 40px;
   height: 120px;
   border-radius: 10px;
@@ -161,18 +161,18 @@ export const OpenButtonWrapper = styled.button<Omit<SvgOpenArrow, "toggle">>`
   cursor: pointer;
 
   animation: ${(props) =>
-    props.sideMenuToggle
+    props.$sideMenuToggle
       ? `rotateButton 0.5s linear`
       : `rotateButtonBack 0.5s linear`};
 
   svg {
     transform: rotate(
         ${(props) =>
-          props.arrowToRight && !props.sideMenuToggle
+          props.$arrowToRight && !props.$sideMenuToggle
             ? "90deg"
-            : props.arrowToRight && props.sideMenuToggle
+            : props.$arrowToRight && props.$sideMenuToggle
             ? "270deg"
-            : !props.arrowToRight && props.sideMenuToggle
+            : !props.$arrowToRight && props.$sideMenuToggle
             ? "90deg"
             : "270deg"}
       )

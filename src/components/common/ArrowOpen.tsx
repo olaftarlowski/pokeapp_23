@@ -3,7 +3,7 @@ import { OpenButtonWrapper } from "../../style/styled-components";
 
 export const ArrowOpen = (
   { toggle, arrowToRight, sideMenuToggle }: SvgOpenArrow) => (
-  <OpenButtonWrapper onClick={toggle} sideMenuToggle={sideMenuToggle} arrowToRight={arrowToRight}>
+  <OpenButtonWrapper onClick={toggle} $sideMenuToggle={sideMenuToggle} $arrowToRight={arrowToRight}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 11.561 7.216"
