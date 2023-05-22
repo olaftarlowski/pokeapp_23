@@ -8,6 +8,7 @@ import { SideMenu } from '../components';
 import { GlobalStyle } from '../style/GlobalStyle';
 import { PokeListContext } from '../store/AppContext';
 import { ApiData } from '../utils/types/pokeList';
+import SideMenuPlayer from '../components/SideMenuPlayer';
 
 const getLocalStorage = (themeOption: string): boolean => {
     const dataOption = localStorage.getItem(themeOption);
@@ -47,6 +48,7 @@ const RootLayout = () => {
                 <SideMenu positionToRight={false}>
                     <div>asd</div>
                     <button onClick={checkContext}>chech global state</button>
+                    <SideMenuPlayer/>
                 </SideMenu>
                 <SideMenu positionToRight={true}> <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias itaque dolore aut reiciendis. Recusandae, expedita. Debitis dicta autem ratione minus ipsam, iste, voluptatem cumque quasi inventore id quisquam nesciunt voluptas.</p></SideMenu>
                 <main>
