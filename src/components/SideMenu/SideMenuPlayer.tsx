@@ -6,13 +6,11 @@ import { SideMenuItemWrapper } from '../../style/styled-components';
 
 
 const PlaceholderComponent: React.FC = () => (
-  <SideMenuItemWrapper  ><img src={imagePlaceholder} alt="placeholder similar to question mark" /></SideMenuItemWrapper>
+  <SideMenuItemWrapper><img src={imagePlaceholder} alt="placeholder similar to question mark" /></SideMenuItemWrapper>
 );
 
 const SideMenuPlayer: React.FC = () => {
   const { selectedRecords } = useContext(PokeListContext);
-
-  console.log(selectedRecords);
 
   const numPlaceholders: number = 3 - selectedRecords.length;
 
@@ -26,6 +24,9 @@ const SideMenuPlayer: React.FC = () => {
       {[...Array(numPlaceholders)].map((_, index) => (
         <PlaceholderComponent key={index} />
       ))}
+      <SideMenuItemWrapper id='remover' color="red">
+
+      </SideMenuItemWrapper>
     </div>
   );
 };

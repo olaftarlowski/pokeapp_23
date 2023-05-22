@@ -13,7 +13,7 @@ const Navbar = ({ setIsNavExpanded }: { setIsNavExpanded: React.Dispatch<React.S
     const activeClassName = "active";
 
     const navbarItems: Link[] = [
-        { name: "Home", to: "/" },
+        { name: "Home", to: "/kanto" },
         { name: "overview", to: "overview" },
         { name: "single", to: "single" },
         // { name: "contact", to: "/contact" },

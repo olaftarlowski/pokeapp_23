@@ -205,7 +205,7 @@ export const SideMenuItemWrapper = styled.div`
   width: 100px;
   height: 100px;
   padding: 6px;
-  border: 2px solid green;
+  border: 2px solid ${({ color }) => (color ? color : "green")};
   border-radius: 10px;
   margin: 12px 0;
 
