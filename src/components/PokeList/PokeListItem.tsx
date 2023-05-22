@@ -150,15 +150,11 @@ const TextboxInfo = styled.div`
 const PokeListItem = React.memo(({ id, name, sprite }: PokeListSingle) => {
   const { addRecord } = useContext(PokeListContext);
   const recordData = { id, name, sprite }
-  // const [selectedRecords, setSelectedRecords] = useState<PokeListItem[]>([]);
 
-  // const handleAddRecord = ({ id, name, sprite }: PokeListItem) => {
-  //   if (selectedRecords.length < 3) {
-  //     setSelectedRecords([...selectedRecords, { id, name, sprite }]);
-  //   }
-  // };
   const handleAddRecord = (recordData: PokeListSingle) => {
-    addRecord(recordData);
+    if (addRecord) {
+      addRecord(recordData);
+    }
   };
 
   return (
