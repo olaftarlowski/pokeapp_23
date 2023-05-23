@@ -15,6 +15,7 @@ const PokeList = () => {
     const kantoData = useKanto();
     const [data, setData] = useState<Single[]>([])
     const [hasError, setHasError] = useState<boolean>(false)
+    const imageLink = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
 
     useEffect(() => {
         if (kantoData) {
@@ -25,15 +26,11 @@ const PokeList = () => {
         }
     }, [kantoData]);
 
-    const imageLink = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
-
 
     return (
         <PokeListWrapper>
             {data?.length !== 0 ? (
-
                 <>
-
                     {data?.slice(0).reverse().map((item: Single) => {
                         const elementId = uuidv4();
                         return <PokeListItem key={elementId} id={elementId} name={item.pokemon_species.name} entryNumber={item.entry_number} sprite={`${imageLink}${item.entry_number}.png`}></PokeListItem>

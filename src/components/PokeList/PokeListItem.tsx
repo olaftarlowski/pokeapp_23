@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
 import ContentLoader from "react-content-loader";
@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { PokeListContext } from "../../store/AppContext";
 import { PokeListSingle } from '../../utils/types/pokeList'
+import { Snackbar } from "../Snackbar";
 
 const moveImage = keyframes`
   from {
@@ -148,16 +149,24 @@ const TextboxInfo = styled.div`
 `;
 
 const PokeListItem = React.memo(({ id, name, sprite, entryNumber }: PokeListSingle) => {
-  const { addRecord } = useContext(PokeListContext);
+  const [isSnackbarActive, setIsSnackbarActive] = useState<boolean>(false);
+  const { addRecord, selectedRecords } = useContext(PokeListContext);
   const recordData = { id, name, sprite, entryNumber }
 
   const handleAddRecord = (recordData: PokeListSingle) => {
     if (addRecord) {
-      addRecord(recordData);
+      const isDuplicate = selectedRecords.some(item => item.id === recordData.id);
+      if (!isDuplicate) {
+        addRecord(recordData);
+      } else {
+        setIsSnackbarActive(true);
+      }
     }
   };
 
-  return (
+  return (<>
+    <Snackbar isSnackbarActive={isSnackbarActive}
+      setIsSnackbarActive={setIsSnackbarActive} />
     <ItemWrapper>
       <FigureItem>
         <LazyLoad height={50}>
@@ -181,6 +190,7 @@ const PokeListItem = React.memo(({ id, name, sprite, entryNumber }: PokeListSing
         </Link>
       </div>
     </ItemWrapper>
+  </>
   );
 });
 
