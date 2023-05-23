@@ -4,7 +4,7 @@ import { PokeListSingle } from '../utils/types/pokeList';
 interface PokeListContextType {
     selectedRecords: PokeListSingle[];
     addRecord?: (record: PokeListSingle) => void;
-    removeElement?:((target:number) => void) ;
+    removeElement?:((target:string) => void) ;
 }
 
 export const PokeListContext = createContext<PokeListContextType>({
@@ -22,7 +22,7 @@ export const PokeListProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         }
     };
 
-    const removeElement=(dropTarget:number) =>{
+    const removeElement=(dropTarget:string) =>{
       const newArr=  selectedRecords.filter((item) => item.id !== dropTarget)
     // const newArr=  selectedRecords.filter((item) => item.id !== dropTarget)
       setSelectedRecords(newArr);

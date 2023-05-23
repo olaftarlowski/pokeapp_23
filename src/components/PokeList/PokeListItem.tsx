@@ -147,9 +147,9 @@ const TextboxInfo = styled.div`
   }
 `;
 
-const PokeListItem = React.memo(({ id, name, sprite }: PokeListSingle) => {
+const PokeListItem = React.memo(({ id, name, sprite, entryNumber }: PokeListSingle) => {
   const { addRecord } = useContext(PokeListContext);
-  const recordData = { id, name, sprite }
+  const recordData = { id, name, sprite, entryNumber }
 
   const handleAddRecord = (recordData: PokeListSingle) => {
     if (addRecord) {
@@ -171,7 +171,7 @@ const PokeListItem = React.memo(({ id, name, sprite }: PokeListSingle) => {
         </LazyLoad>
       </FigureItem>
       <TextboxInfo>
-        <p className="card-text">#{id}</p>
+        <p className="card-text">#{entryNumber}</p>
         <h3 className="card-headline">{name}</h3>
       </TextboxInfo>
       <div className="controls-area">

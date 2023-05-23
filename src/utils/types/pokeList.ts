@@ -1,5 +1,7 @@
 export interface PokeListSingle {
-  id: number;
+  id: string;
+  // entry_number: number;
+  entryNumber:number;
   name: string;
   sprite: string | undefined;
 }

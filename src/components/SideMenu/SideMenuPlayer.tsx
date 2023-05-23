@@ -16,6 +16,8 @@ const SideMenuPlayer: React.FC = () => {
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>, index: number, item: any) => {
     console.log(event.dataTransfer);
+    console.log(item.id);
+    
 
     event.dataTransfer.setData('text/plain', item.id);
     setIsDragging(true);
@@ -27,7 +29,7 @@ const SideMenuPlayer: React.FC = () => {
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    const droppedIndex = Number(event.dataTransfer.getData('text/plain'));
+    const droppedIndex = event.dataTransfer.getData('text/plain');
     console.log(droppedIndex)
     if (removeElement) {
       removeElement(droppedIndex);

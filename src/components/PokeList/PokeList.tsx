@@ -5,6 +5,7 @@ import { PokeListItem } from "./"
 import { LoadingSpinner } from "../common"
 import { useOutletContext } from "react-router-dom"
 import { Single, ApiData } from "../../utils/types/pokeList"
+import { v4 as uuidv4 } from 'uuid';
 
 function useKanto() {
     return useOutletContext<ApiData | undefined>();
@@ -26,12 +27,16 @@ const PokeList = () => {
 
     const imageLink = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
 
+
     return (
         <PokeListWrapper>
             {data?.length !== 0 ? (
+
                 <>
-                    {data?.map((item: Single) => {
-                        return <PokeListItem key={item.entry_number} id={item.entry_number} name={item.pokemon_species.name} sprite={`${imageLink}${item.entry_number}.png`}></PokeListItem>
+
+                    {data?.slice(0).reverse().map((item: Single) => {
+                        const elementId = uuidv4();
+                        return <PokeListItem key={elementId} id={elementId} name={item.pokemon_species.name} entryNumber={item.entry_number} sprite={`${imageLink}${item.entry_number}.png`}></PokeListItem>
                     })}
                 </>
             ) : (
