@@ -14,10 +14,11 @@ const SideMenuPlayer: React.FC = () => {
   const { selectedRecords, removeElement } = useContext(PokeListContext);
   const [isDragging, setIsDragging] = useState(false);
 
-  const handleDragStart = (event: React.DragEvent<HTMLDivElement>, index: number, item: any) => {
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>,
+    // index: number,
+    item: PokeListSingle) => {
     console.log(event.dataTransfer);
     console.log(item.id);
-    
 
     event.dataTransfer.setData('text/plain', item.id);
     setIsDragging(true);
@@ -41,11 +42,15 @@ const SideMenuPlayer: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      {selectedRecords.map((item: PokeListSingle, index: number) => (
+      {selectedRecords.map((item: PokeListSingle
+        // , index: number
+      ) => (
         <SideMenuItemWrapper
           key={item.id}
           draggable={!isDragging}
-          onDragStart={event => handleDragStart(event, index, item)}
+          onDragStart={event => handleDragStart(event, item,
+            // index
+          )}
         >
           <img src={item.sprite} alt={item.name} />
         </SideMenuItemWrapper>
