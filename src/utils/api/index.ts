@@ -1,15 +1,24 @@
+import { AxiosResponse, isAxiosError } from "axios";
 import { api } from "./config";
+import { ApiData } from "../types/pokeList";
 
-const fetchRegionKanto = async () => {
-  const response = await api.get("/pokedex/kanto").catch((error) => {
-    if (error.response) {
+const fetchRegionKanto: () => Promise<
+  AxiosResponse<ApiData> | undefined
+> = async () => {
+  try {
+    const response: AxiosResponse<ApiData> = await api.get<ApiData>(
+      "/pokedex/kanto"
+    );
+    return response;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      const errResp = error.response;
       console.log("Error: ", error.message);
-      console.log("Response status: ", error.response.status);
+      console.log("Response status: ", errResp?.status);
+    } else {
+      throw error;
     }
-    return null;
-  });
-
-  return response;
+  }
 };
 
 const fetchSingleKantoRandom = async () => {
