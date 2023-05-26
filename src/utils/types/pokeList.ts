@@ -11,7 +11,9 @@ export type Single = {
   pokemon_species: { name: string };
 };
 
-export type ApiData = { data: { pokemon_entries: Single[] } };
+export type ApiData = {  pokemon_entries: Single[] };
+
+export type ApiDataReceived =  { pokemon_entries: Single[]  };
 
 export type PokeTypes = {
   type: {

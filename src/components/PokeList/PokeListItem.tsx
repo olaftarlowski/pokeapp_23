@@ -155,6 +155,8 @@ const PokeListItem = React.memo(({ id, name, sprite, entryNumber }: PokeListSing
 
   const handleAddRecord = (recordData: PokeListSingle) => {
     if (addRecord) {
+      console.log(id);
+      
       const isDuplicate = selectedRecords.some(item => item.id === recordData.id);
       if (!isDuplicate) {
         addRecord(recordData);

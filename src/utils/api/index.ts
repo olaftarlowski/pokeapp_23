@@ -9,6 +9,8 @@ const fetchRegionKanto: () => Promise<
     const response: AxiosResponse<ApiData> = await api.get<ApiData>(
       "/pokedex/kanto"
     );
+    console.log(response);
+    
     return response;
   } catch (error) {
     if (isAxiosError(error)) {
