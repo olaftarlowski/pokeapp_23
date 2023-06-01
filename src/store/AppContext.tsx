@@ -1,14 +1,14 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { ApiData, PokeListSingle, Single } from '../utils/types/pokeList';
+import { ApiData, SingleRecord } from '../utils/types/pokeList';
 import { fetchRegionKanto } from '../utils/api';
 import { v4 as uuidv4 } from 'uuid';
 
 interface PokeListContextType {
-  kantoRecords: Single[] | undefined;
+  kantoRecords: SingleRecord[] | undefined;
   addKantoRecords: (data: ApiData | undefined) => void;
 
-  selectedRecords: PokeListSingle[];
-  addRecord: (record: PokeListSingle) => void;
+  selectedRecords: SingleRecord[];
+  addRecord: (record: SingleRecord) => void;
   removeElement?: ((target: string) => void);
 }
 
@@ -24,9 +24,9 @@ export const PokeListContext = createContext<PokeListContextType>({
 
 
 export const PokeListProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [selectedRecords, setSelectedRecords] = useState<PokeListSingle[]>([]);
+  const [selectedRecords, setSelectedRecords] = useState<SingleRecord[]>([]);
 
-  const [kantoRecords, setKantoRecords] = useState<Single[] | undefined>(undefined);
+  const [kantoRecords, setKantoRecords] = useState<SingleRecord[] | undefined>([]);
   const imageLink = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
 
   const addKantoRecords = async () => {
@@ -46,6 +46,9 @@ export const PokeListProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         setKantoRecords(recordsWithId);
       }
     } catch (error) {
+      setKantoRecords([])
+      console.log('BLADDDx');
+      
       console.log("Error fetching Kanto records: ", error);
     }
   };
@@ -54,7 +57,7 @@ export const PokeListProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     addKantoRecords();
   }, []);
 
-  const addRecord = (record: PokeListSingle) => {
+  const addRecord = (record: SingleRecord) => {
     if (selectedRecords.length < 3) {
       setSelectedRecords([...selectedRecords, record]);
     }

@@ -220,9 +220,10 @@ export const SnackbarWrapper = styled.div`
   margin: 0 70px;
   position: fixed;
   right: 0;
-  left: 0;
+  /* left: 0; */
   z-index: 10;
   transition: opacity 150ms, transform 150ms;
+
   span {
     background-color: ${(props) => props.theme.colors.secondary};
     color: ${(props) => props.theme.colors.text};

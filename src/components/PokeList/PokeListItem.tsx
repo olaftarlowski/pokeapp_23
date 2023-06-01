@@ -6,7 +6,7 @@ import ContentLoader from "react-content-loader";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { PokeListContext } from "../../store/AppContext";
-import { PokeListSingle } from '../../utils/types/pokeList'
+import { SingleRecord } from '../../utils/types/pokeList'
 import { Snackbar } from "../Snackbar";
 
 const moveImage = keyframes`
@@ -148,15 +148,13 @@ const TextboxInfo = styled.div`
   }
 `;
 
-const PokeListItem = React.memo(({ id, name, sprite, entryNumber }: PokeListSingle) => {
+const PokeListItem = React.memo(({ id, pokemon_species: { name }, sprite, entry_number }: SingleRecord) => {
   const [isSnackbarActive, setIsSnackbarActive] = useState<boolean>(false);
   const { addRecord, selectedRecords } = useContext(PokeListContext);
-  const recordData = { id, name, sprite, entryNumber }
+  const recordData = { id, entry_number, sprite, pokemon_species: { name } }
 
-  const handleAddRecord = (recordData: PokeListSingle) => {
+  const handleAddRecord = (recordData: SingleRecord) => {
     if (addRecord) {
-      console.log(id);
-      
       const isDuplicate = selectedRecords.some(item => item.id === recordData.id);
       if (!isDuplicate) {
         addRecord(recordData);
@@ -182,7 +180,7 @@ const PokeListItem = React.memo(({ id, name, sprite, entryNumber }: PokeListSing
         </LazyLoad>
       </FigureItem>
       <TextboxInfo>
-        <p className="card-text">#{entryNumber}</p>
+        <p className="card-text">#{entry_number}</p>
         <h3 className="card-headline">{name}</h3>
       </TextboxInfo>
       <div className="controls-area">
