@@ -1,6 +1,6 @@
 import { AxiosResponse, isAxiosError } from "axios";
 import { api } from "./config";
-import { ApiData } from "../types/pokeList";
+import { ApiData, PokeSingleInterface } from "../types/pokeList";
 
 const fetchRegionKanto: () => Promise<
   AxiosResponse<ApiData> | undefined
@@ -44,18 +44,31 @@ const fetchSingleKantoRandom = async () => {
   return response;
 };
 
-const fetchSingleKanto = async (recordName: string | undefined) => {
+const fetchSingleKanto: (
+  recordName: string | undefined
+) => Promise<AxiosResponse<PokeSingleInterface> | null> = async (
+  recordName
+) => {
   console.log("SingleItem choosen: ", recordName);
 
-  const response = await api.get(`pokemon/${recordName}/`).catch((error) => {
-    if (error.response) {
-      console.log("Error: ", error.message);
-      console.log("Response status: ", error.response.status);
-    }
-    return null;
-  });
+  try {
+    const response: AxiosResponse<PokeSingleInterface> = await api.get(
+      `pokemon/${recordName}/`
+    );
+    console.log(response);
 
-  return response;
+    return response;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      const errResp = error.response;
+      console.log("Error: ", error.message);
+      console.log("Response status: ", errResp?.status);
+    } else {
+      throw error;
+    }
+  }
+
+  return null;
 };
 
 export { fetchRegionKanto, fetchSingleKanto, fetchSingleKantoRandom };

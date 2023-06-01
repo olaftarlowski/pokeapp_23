@@ -7,6 +7,8 @@ export type SingleRecord = {
 
 export type ApiData = { pokemon_entries: SingleRecord[] };
 
+export type ApiDataSingle = { pokemon_entries: SingleRecord }; //////////// HERE TAKE CARE OF
+
 // export type ApiDataReceived =  { pokemon_entries: Single[]  };
 
 export type PokeTypes = {
