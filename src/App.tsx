@@ -11,8 +11,6 @@ import { Home, SingleItem, RootLayout, PokeSingle, Overview } from './pages'
 import { ErrorPage } from './components'
 import './App.css'
 
-import { fetchRegionKanto as Rootloader } from "./utils/api";
-
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,7 +18,6 @@ const router = createBrowserRouter(
       path="/"
       element={<RootLayout />}
       errorElement={<ErrorPage />}
-      loader={Rootloader}
     >
       <Route path="/" element={<Navigate to="kanto" />} />
       <Route path="kanto" element={<Home />} />

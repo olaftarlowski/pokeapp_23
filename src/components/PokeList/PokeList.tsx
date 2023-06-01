@@ -1,69 +1,53 @@
-import { useContext, useEffect, useState } from "react"
-// import { fetchRegionKanto } from "../../utils/api"
-import { PokeListWrapper } from "../../style/styled-components"
+import { useEffect, useState } from "react"
+import { usePokeListContext } from "../../utils/hooks/usePokeListContext"
 import { PokeListItem } from "./"
 import { LoadingSpinner } from "../common"
-import { useOutletContext } from "react-router-dom"
-import { Single, ApiData } from "../../utils/types/pokeList"
-import { v4 as uuidv4 } from 'uuid';
-import { PokeListContext, usePokeListContext } from "../../store/AppContext"
+import { Single } from "../../utils/types/pokeList"
+import { PokeListWrapper } from "../../style/styled-components"
+// import { useOutletContext } from "react-router-dom"
 
 
-import { fetchRegionKanto } from "../../utils/api"
-
-// function useKanto() {
-//     return useOutletContext<ApiData | undefined>();
-// }
 
 const PokeList = () => {
-    const { kantoRecords } = usePokeListContext();
-    // const { kantoRecords, addKantoRecords } = useContext(PokeListContext);
-
-
     // const kantoData = useKanto();
-
-    // const [data, setData] = useState<Single[]>([])
+    const { kantoRecords } = usePokeListContext();
     const [hasError, setHasError] = useState<boolean>(false)
-    const imageLink = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
+    const data = kantoRecords;
 
-    const data = kantoRecords?.pokemon_entries;
-    // useEffect(() => {
-    //     const add = fetchRegionKanto()
-    //     if (addKantoRecords) {
-    //         addKantoRecords(kantoData)
-    //         // setData(kantoData.data.pokemon_entries)
-    //     } else {
-    //         setHasError(true)
-    //         // setData([])
-    //     }
-    // }, [kantoData]);
+    console.log(data);
+    
+    useEffect(() => {
+        if (!data) {
+            setHasError(true)
+
+        }
+    }, [data]);
 
     const checll = () => {
-        console.log(kantoRecords?.pokemon_entries);
-        
+        console.log(kantoRecords);
     }
 
-
     return (
-        <PokeListWrapper>
-            <div >TESTY
-
+        <>
+            <div >
+                <h3>TESTY</h3>
                 <button onClick={checll}>TESTT</button>
             </div>
-            {data?.length !== 0 ? (
-                <>
-                    {data?.slice(0).reverse().map((item: Single) => {
-                        const elementId = uuidv4();
-                        return <PokeListItem key={elementId} id={elementId} name={item.pokemon_species.name} entryNumber={item.entry_number} sprite={`${imageLink}${item.entry_number}.png`}></PokeListItem>
-                    })}
-                </>
-            ) : (
-                <p>Empty data</p>
-            )}
-            {!hasError && !data && <LoadingSpinner />}
-            {hasError && <p>An error has occured...</p>}
+            <PokeListWrapper>
+                {data?.length !== 0 ? (
+                    <>
+                        {data?.slice(0).reverse().map((item: Single) => {
+                            return <PokeListItem key={item.id} id={item.id} name={item.pokemon_species.name} entryNumber={item.entry_number} sprite={item.sprite}></PokeListItem>
+                        })}
+                    </>
+                ) : (
+                    <p>Empty data</p>
+                )}
+                {!hasError && !data && <LoadingSpinner />}
+                {hasError && <p>An error has occured...</p>}
 
-        </PokeListWrapper>
+            </PokeListWrapper>
+        </>
     )
 }
 

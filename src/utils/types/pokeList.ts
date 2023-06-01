@@ -1,19 +1,21 @@
 export interface PokeListSingle {
   id: string;
   // entry_number: number;
-  entryNumber:number;
+  entryNumber: number;
   name: string;
   sprite: string | undefined;
 }
 
 export type Single = {
+  id: string;
   entry_number: number;
+  sprite: string;
   pokemon_species: { name: string };
 };
 
-export type ApiData = {  pokemon_entries: Single[] };
+export type ApiData = { pokemon_entries: Single[] };
 
-export type ApiDataReceived =  { pokemon_entries: Single[]  };
+// export type ApiDataReceived =  { pokemon_entries: Single[]  };
 
 export type PokeTypes = {
   type: {

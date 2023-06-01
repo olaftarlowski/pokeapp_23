@@ -10,7 +10,7 @@ const fetchRegionKanto: () => Promise<
       "/pokedex/kanto"
     );
     console.log(response);
-    
+
     return response;
   } catch (error) {
     if (isAxiosError(error)) {
