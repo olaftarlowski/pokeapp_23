@@ -23,30 +23,9 @@ const fetchRegionKanto: () => Promise<
   }
 };
 
-const fetchSingleKantoRandom = async () => {
-  const generateRandomRecord = (): string => {
-    const randomNum = Math.floor(Math.random() * 151) + 1;
-    const randomStr = randomNum.toString();
-    return randomStr;
-  };
-
-  const randomRecord: string = generateRandomRecord();
-  console.log("SingleItem randomed: ", randomRecord);
-
-  const response = await api.get(`pokemon/${randomRecord}/`).catch((error) => {
-    if (error.response) {
-      console.log("Error: ", error.message);
-      console.log("Response status: ", error.response.status);
-    }
-    return null;
-  });
-
-  return response;
-};
-
 const fetchSingleKanto: (
-  recordName: string | undefined
-) => Promise<AxiosResponse<PokeSingleInterface> | null> = async (
+  recordName: string
+) => Promise<AxiosResponse<PokeSingleInterface> | undefined> = async (
   recordName
 ) => {
   console.log("SingleItem choosen: ", recordName);
@@ -67,8 +46,27 @@ const fetchSingleKanto: (
       throw error;
     }
   }
+};
 
-  return null;
+const fetchSingleKantoRandom = async () => {
+  const generateRandomRecord = (): string => {
+    const randomNum = Math.floor(Math.random() * 151) + 1;
+    const randomStr = randomNum.toString();
+    return randomStr;
+  };
+
+  const randomRecord: string = generateRandomRecord();
+  console.log("SingleItem randomed: ", randomRecord);
+
+  const response = await api.get(`pokemon/${randomRecord}/`).catch((error) => {
+    if (error.response) {
+      console.log("Error: ", error.message);
+      console.log("Response status: ", error.response.status);
+    }
+    return null;
+  });
+
+  return response;
 };
 
 export { fetchRegionKanto, fetchSingleKanto, fetchSingleKantoRandom };

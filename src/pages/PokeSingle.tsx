@@ -17,11 +17,15 @@ const PokeSingle = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await fetchSingleKanto(pokeNameCode);
-                if (result === null) {
-                    setError(true);
+                if (pokeNameCode) {
+                    const result = await fetchSingleKanto(pokeNameCode);
+                    if (!result) {
+                        setError(true);
+                    } else {
+                        setPokemon(result.data);
+                    }
                 } else {
-                    setPokemon(result.data);
+                    setError(true);
                 }
             } catch (error) {
                 setError(true);
