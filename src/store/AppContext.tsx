@@ -1,11 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { ApiData, SingleRecord } from '../utils/types/pokeList';
-import { fetchRegionKanto } from '../utils/api';
+import { fetchAllSingleRecords } from '../utils/api';
 import { v4 as uuidv4 } from 'uuid';
 
 interface PokeListContextType {
-  kantoRecords: SingleRecord[] | undefined;
-  addKantoRecords: (data: ApiData | undefined) => void;
+  allSingleRecords: SingleRecord[] | undefined;
+  addAllSingleRecords: (data: ApiData | undefined) => void;
 
   selectedRecords: SingleRecord[];
   addRecord: (record: SingleRecord) => void;
@@ -13,8 +13,8 @@ interface PokeListContextType {
 }
 
 export const PokeListContext = createContext<PokeListContextType>({
-  kantoRecords: undefined,
-  addKantoRecords: () => undefined,
+  allSingleRecords: undefined,
+  addAllSingleRecords: () => undefined,
 
   selectedRecords: [],
   addRecord: () => undefined,
@@ -26,12 +26,12 @@ export const PokeListContext = createContext<PokeListContextType>({
 export const PokeListProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedRecords, setSelectedRecords] = useState<SingleRecord[]>([]);
 
-  const [kantoRecords, setKantoRecords] = useState<SingleRecord[] | undefined>([]);
+  const [allSingleRecords, setAllSingleRecords] = useState<SingleRecord[] | undefined>([]);
   const imageLink = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
 
-  const addKantoRecords = async () => {
+  const addAllSingleRecords = async () => {
     try {
-      const response = await fetchRegionKanto();
+      const response = await fetchAllSingleRecords();
       if (response) {
         const recordsWithId = response.data.pokemon_entries.map((props) => {
           const elementId = uuidv4()
@@ -43,18 +43,18 @@ export const PokeListProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         }
         );
 
-        setKantoRecords(recordsWithId);
+        setAllSingleRecords(recordsWithId);
       }
     } catch (error) {
-      setKantoRecords([])
+      setAllSingleRecords([])
       console.log('BLADDDx');
-      
-      console.log("Error fetching Kanto records: ", error);
+
+      console.log("Error fetching all poke records: ", error);
     }
   };
 
   useEffect(() => {
-    addKantoRecords();
+    addAllSingleRecords();
   }, []);
 
   const addRecord = (record: SingleRecord) => {
@@ -69,7 +69,7 @@ export const PokeListProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   return (
-    <PokeListContext.Provider value={{ kantoRecords, addKantoRecords, selectedRecords, addRecord, removeElement }}>
+    <PokeListContext.Provider value={{ allSingleRecords, addAllSingleRecords, selectedRecords, addRecord, removeElement }}>
       {children}
     </PokeListContext.Provider>
   );

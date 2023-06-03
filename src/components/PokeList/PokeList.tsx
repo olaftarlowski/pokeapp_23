@@ -9,11 +9,12 @@ import { PokeListWrapper } from "../../style/styled-components"
 
 const PokeList = () => {
     // const kantoData = useKanto();
-    const { kantoRecords } = usePokeListContext();
+    const { allSingleRecords } = usePokeListContext();
     const [hasError, setHasError] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const data = kantoRecords;
+    const data = allSingleRecords;
+    console.log(allSingleRecords);
 
     useEffect(() => {
         if (!data) {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router";
-import { fetchSingleKanto } from "../utils/api"
+import { fetchSingleRecord } from "../utils/api"
 import { PokeSingleItem } from "../components/PokeSingleItem";
 import { LoadingSpinner, BackButton } from "../components/common";
 import { ErrorPage } from "../components";
@@ -18,7 +18,7 @@ const PokeSingle = () => {
         const fetchData = async () => {
             try {
                 if (pokeNameCode) {
-                    const result = await fetchSingleKanto(pokeNameCode);
+                    const result = await fetchSingleRecord(pokeNameCode);
                     if (!result) {
                         setError(true);
                     } else {
