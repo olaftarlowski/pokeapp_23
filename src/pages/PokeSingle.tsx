@@ -9,6 +9,7 @@ import { PokeSingleInterface } from "../utils/types/pokeList";
 
 const PokeSingle = () => {
     const { pokeNameCode } = useParams<Record<string, string | undefined>>()
+console.log(pokeNameCode);
 
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);

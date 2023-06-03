@@ -4,14 +4,19 @@ import { PokeListItem } from "./"
 import { LoadingSpinner } from "../common"
 import { SingleRecord } from "../../utils/types/pokeList"
 import { PokeListWrapper } from "../../style/styled-components"
+import { useParams } from "react-router-dom"
 // import { useOutletContext } from "react-router-dom"
 
 
 const PokeList = () => {
+    // const { pageRegion } = useParams<Record<string, string | undefined>>();
+    // console.log(pageRegion);
+    
     // const kantoData = useKanto();
     const { kantoRecords } = usePokeListContext();
     const [hasError, setHasError] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(true);
+console.log(kantoRecords);
 
     const data = kantoRecords;
 

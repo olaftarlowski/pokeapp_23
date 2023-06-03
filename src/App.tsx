@@ -20,7 +20,7 @@ const router = createBrowserRouter(
       errorElement={<ErrorPage />}
     >
       <Route path="/" element={<Navigate to="kanto" />} />
-      <Route path="kanto" element={<Home />} />
+      <Route path=":pageRegion" element={<Home />} />
       <Route path="overview" element={<Overview />} />
       <Route path="single" element={<SingleItem />} />
       <Route path="/:page/:pokeNameCode" element={<PokeSingle />} />
