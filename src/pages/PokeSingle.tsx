@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router";
-import { fetchSingleKanto } from "../utils/api"
+import { fetchSingleRecord } from "../utils/api"
 import { PokeSingleItem } from "../components/PokeSingleItem";
 import { LoadingSpinner, BackButton } from "../components/common";
 import { ErrorPage } from "../components";
@@ -9,7 +9,7 @@ import { PokeSingleInterface } from "../utils/types/pokeList";
 
 const PokeSingle = () => {
     const { pokeNameCode } = useParams<Record<string, string | undefined>>()
-console.log(pokeNameCode);
+    console.log(pokeNameCode);
 
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
@@ -19,7 +19,7 @@ console.log(pokeNameCode);
         const fetchData = async () => {
             try {
                 if (pokeNameCode) {
-                    const result = await fetchSingleKanto(pokeNameCode);
+                    const result = await fetchSingleRecord(pokeNameCode);
                     if (!result) {
                         setError(true);
                     } else {

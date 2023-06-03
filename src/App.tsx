@@ -19,8 +19,8 @@ const router = createBrowserRouter(
       element={<RootLayout />}
       errorElement={<ErrorPage />}
     >
-      <Route path="/" element={<Navigate to="kanto" />} />
-      <Route path=":pageRegion" element={<Home />} />
+      <Route path="/" element={<Navigate to="main" />} />
+      <Route path="main" element={<Home />} />
       <Route path="overview" element={<Overview />} />
       <Route path="single" element={<SingleItem />} />
       <Route path="/:page/:pokeNameCode" element={<PokeSingle />} />

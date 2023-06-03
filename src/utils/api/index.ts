@@ -23,28 +23,7 @@ const fetchAllSingleRecords: () => Promise<
   }
 };
 
-// const fetchRegionKanto: () => Promise<
-//   AxiosResponse<ApiData> | undefined
-// > = async () => {
-//   try {
-//     const response: AxiosResponse<ApiData> = await api.get<ApiData>(
-//       "/pokedex/kanto"
-//     );
-//     console.log(response);
-
-//     return response;
-//   } catch (error) {
-//     if (isAxiosError(error)) {
-//       const errResp = error.response;
-//       console.log("Error: ", error.message);
-//       console.log("Response status: ", errResp?.status);
-//     } else {
-//       throw error;
-//     }
-//   }
-// };
-
-const fetchSingleKanto: (
+const fetchSingleRecord: (
   recordName: string
 ) => Promise<AxiosResponse<PokeSingleInterface> | undefined> = async (
   recordName
@@ -90,4 +69,4 @@ const fetchSingleKantoRandom = async () => {
   return response;
 };
 
-export { fetchAllSingleRecords, fetchSingleKanto, fetchSingleKantoRandom };
+export { fetchAllSingleRecords, fetchSingleRecord, fetchSingleKantoRandom };
