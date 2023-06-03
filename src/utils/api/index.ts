@@ -2,12 +2,12 @@ import { AxiosResponse, isAxiosError } from "axios";
 import { api } from "./config";
 import { ApiData, PokeSingleInterface } from "../types/pokeList";
 
-const fetchRegion: (targetRegion:string) => Promise<
+const fetchAllSingleRecords: () => Promise<
   AxiosResponse<ApiData> | undefined
-> = async (targetRegion:string) => {
+> = async () => {
   try {
     const response: AxiosResponse<ApiData> = await api.get<ApiData>(
-      `/pokedex/${targetRegion}`
+      "/pokedex/1"
     );
     console.log(response);
 
@@ -90,4 +90,4 @@ const fetchSingleKantoRandom = async () => {
   return response;
 };
 
-export { fetchRegion, fetchSingleKanto, fetchSingleKantoRandom };
+export { fetchAllSingleRecords, fetchSingleKanto, fetchSingleKantoRandom };

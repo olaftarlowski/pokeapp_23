@@ -14,7 +14,6 @@ const Navbar = ({ setIsNavExpanded }: { setIsNavExpanded: React.Dispatch<React.S
 
     const navbarItems: Link[] = [
         { name: "Home", to: "/kanto" },
-        { name: "hoenn", to: "/hoenn" },
         { name: "overview", to: "overview" },
         { name: "single", to: "single" },
         // { name: "contact", to: "/contact" },
