@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router";
-import { fetchSingleRecord } from "../utils/api"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { fetchSingleRecord } from "../utils/api";
 import { PokeSingleItem } from "../components/PokeSingleItem";
 import { LoadingSpinner, BackButton } from "../components/common";
 import { ErrorPage } from "../components";
 import { PokeSingleInterface } from "../utils/types/pokeList";
 
-
 const PokeSingle = () => {
-    const { pokeNameCode } = useParams<Record<string, string | undefined>>()
-    console.log(pokeNameCode);
+    const { pokeNameCode } = useParams<Record<string, string | undefined>>();
 
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
@@ -53,7 +51,6 @@ const PokeSingle = () => {
                     types={pokemon.types}
                     moves={pokemon.moves}
                 />
-
             )}
         </div>
     );

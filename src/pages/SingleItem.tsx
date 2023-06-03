@@ -46,7 +46,7 @@ const SingleItem = () => {
                 )}
                 {hasError && <p>An error has occured...</p>}
             </div>
-            </>
+        </>
     )
 }
 
