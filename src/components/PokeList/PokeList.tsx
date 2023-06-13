@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { usePokeListContext } from "../../utils/hooks/usePokeListContext";
-import { PokeListItem } from "./";
+import { PokeListItem, PokeListPagination } from "./";
 import { LoadingSpinner } from "../common";
 import { SingleRecord } from "../../utils/types/pokeList";
 import { PokeListWrapper } from "../../style/styled-components";
 
 import { useNavigate, useLocation } from "react-router-dom";
-
 
 const PokeList = () => {
   const { allSingleRecords } = usePokeListContext();
@@ -21,7 +20,7 @@ const PokeList = () => {
   const [hasError, setHasError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const recordsPerPage = 18; // 18 for prod, final version is 48
+  const recordsPerPage = 48; // 18 for prod, final version is 48
   const totalPages = Math.ceil(allSingleRecords.length / recordsPerPage);
 
   useEffect(() => {
@@ -37,11 +36,11 @@ const PokeList = () => {
   }, [allSingleRecords, currentPage, navigate, location.search]);
 
   const handleNextPage = () => {
-    setCurrentPage(prevPage => prevPage + 1);
+    setCurrentPage((prevPage) => prevPage + 1);
   };
 
   const handlePrevPage = () => {
-    setCurrentPage(prevPage => prevPage - 1);
+    setCurrentPage((prevPage) => prevPage - 1);
   };
 
   const handlePageClick = (page: number) => {
@@ -56,37 +55,29 @@ const PokeList = () => {
   );
 
   return (
-    <PokeListWrapper>
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : currentRecords.length !== 0 ? (
-        <>
-          {currentRecords.map((props: SingleRecord) => (
-            <PokeListItem key={props.id} {...props} />
-          ))}
-        </>
-      ) : (
-        <p>Empty data</p>
-      )}
-      {hasError && <p>An error has occurred...</p>}
-      <div>
-        {currentPage !== 1 && (
-          <button onClick={handlePrevPage}>Previous</button>
+    <>
+      <PokeListWrapper>
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : currentRecords.length !== 0 ? (
+          <>
+            {currentRecords.map((props: SingleRecord) => (
+              <PokeListItem key={props.id} {...props} />
+            ))}
+          </>
+        ) : (
+          <p>Empty data</p>
         )}
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index}
-            onClick={() => handlePageClick(index + 1)}
-            disabled={currentPage === index + 1}
-          >
-            {index + 1}
-          </button>
-        ))}
-        {currentPage !== totalPages && (
-          <button onClick={handleNextPage}>Next</button>
-        )}
-      </div>
-    </PokeListWrapper>
+        {hasError && <p>An error has occurred...</p>}
+      </PokeListWrapper>
+      <PokeListPagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        handlePrevPage={handlePrevPage}
+        handleNextPage={handleNextPage}
+        handlePageClick={handlePageClick}
+      />
+    </>
   );
 };
 

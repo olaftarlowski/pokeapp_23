@@ -110,6 +110,7 @@ export const NavbarWrapper = styled.nav`
 `;
 
 export const PokeListWrapper = styled.div`
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
   display: grid;

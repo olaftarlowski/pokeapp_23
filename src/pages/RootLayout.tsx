@@ -56,6 +56,7 @@ const RootLayout = () => {
                 <footer>
                     <hr />
                     <center>stopka hehe</center>
+                    <div style={{width: 100, height: 400}}></div>
                 </footer>
             </RootLayoutWrapper>
         </ThemeProvider>
