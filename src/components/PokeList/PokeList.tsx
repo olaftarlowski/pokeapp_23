@@ -4,7 +4,8 @@ import { PokeListItem } from "./";
 import { LoadingSpinner } from "../common";
 import { SingleRecord } from "../../utils/types/pokeList";
 import { PokeListWrapper } from "../../style/styled-components";
-import { useNavigate,useLocation } from "react-router-dom";
+
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 const PokeList = () => {
@@ -37,17 +38,14 @@ const PokeList = () => {
 
   const handleNextPage = () => {
     setCurrentPage(prevPage => prevPage + 1);
-    // navigate(`/main?page=${currentPage + 1}`);
   };
 
   const handlePrevPage = () => {
     setCurrentPage(prevPage => prevPage - 1);
-    // navigate(`/main?page=${currentPage - 1}`);
   };
 
   const handlePageClick = (page: number) => {
     setCurrentPage(page);
-    // navigate(`/main?page=${page}`);
   };
 
   const indexOfLastRecord = currentPage * recordsPerPage;

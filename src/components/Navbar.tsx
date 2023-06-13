@@ -13,10 +13,9 @@ const Navbar = ({ setIsNavExpanded }: { setIsNavExpanded: React.Dispatch<React.S
     const activeClassName = "active";
 
     const navbarItems: Link[] = [
-        { name: "Home", to: "/main" },
+        { name: "pokédex", to: "pokedex?page=1" },
         { name: "overview", to: "overview" },
-        { name: "single", to: "single" },
-        // { name: "contact", to: "/contact" },
+        { name: "single", to: "single" }
     ];
 
     const expandNavHandler = () => {

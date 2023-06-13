@@ -119,6 +119,8 @@ const FigureItem = styled.figure`
   border-radius: 5px;
   width: 100%;
   margin: 0;
+  /* width:146px; */
+  height: 146px;
 
   .card-img {
     width: 100%;
@@ -174,7 +176,7 @@ const PokeListItem = React.memo(({ id, pokemon_species: { name }, sprite, entry_
             <img className="card-img" src={sprite} alt={`Pokemon ${name}`} />
           ) : (
             <ContentLoader>
-              <rect x="0" y="0" rx="5" ry="5" width="140" height="140" />
+              <rect x="0" y="0" rx="5" ry="5" width="146" height="146" />
             </ContentLoader>
           )}
         </LazyLoad>
