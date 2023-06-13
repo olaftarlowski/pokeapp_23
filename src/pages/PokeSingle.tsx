@@ -11,7 +11,7 @@ const PokeSingle = () => {
 
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
-    const [pokemon, setPokemon] = useState<PokeSingleInterface | null>(null);
+    const [itemRecord, setItemRecord] = useState<PokeSingleInterface | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,7 +21,7 @@ const PokeSingle = () => {
                     if (!result) {
                         setError(true);
                     } else {
-                        setPokemon(result.data);
+                        setItemRecord(result.data);
                     }
                 } else {
                     setError(true);
@@ -41,15 +41,15 @@ const PokeSingle = () => {
             <BackButton />
             {loading && <LoadingSpinner />}
             {error && <ErrorPage />}
-            {pokemon && (
+            {itemRecord && (
                 <PokeSingleItem
-                    id={pokemon.id}
-                    name={pokemon.name}
-                    sprite={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-                    height={pokemon.height}
-                    weight={pokemon.weight}
-                    types={pokemon.types}
-                    moves={pokemon.moves}
+                    id={itemRecord.id}
+                    name={itemRecord.name}
+                    sprite={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${itemRecord.id}.png`}
+                    height={itemRecord.height}
+                    weight={itemRecord.weight}
+                    types={itemRecord.types}
+                    moves={itemRecord.moves}
                 />
             )}
         </div>

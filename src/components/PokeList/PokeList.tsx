@@ -4,40 +4,50 @@ import { PokeListItem } from "./";
 import { LoadingSpinner } from "../common";
 import { SingleRecord } from "../../utils/types/pokeList";
 import { PokeListWrapper } from "../../style/styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
+
 
 const PokeList = () => {
   const { allSingleRecords } = usePokeListContext();
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [hasError, setHasError] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const location = useLocation();
   const navigate = useNavigate();
 
-  const recordsPerPage = 48;
+  const searchParams = new URLSearchParams(location.search);
+  const pageParam = searchParams.get("page");
+  const initialPage = pageParam ? parseInt(pageParam) : 1;
+
+  const [currentPage, setCurrentPage] = useState<number>(initialPage);
+  const [hasError, setHasError] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const recordsPerPage = 18; // 18 for prod, final version is 48
   const totalPages = Math.ceil(allSingleRecords.length / recordsPerPage);
 
   useEffect(() => {
+    const newSearchParams = new URLSearchParams(location.search);
+    newSearchParams.set("page", currentPage.toString());
+    navigate({ search: newSearchParams.toString() });
     if (!allSingleRecords) {
       setIsLoading(true);
       setHasError(false);
     } else {
       setIsLoading(false);
     }
-  }, [allSingleRecords]);
+  }, [allSingleRecords, currentPage, navigate, location.search]);
 
   const handleNextPage = () => {
     setCurrentPage(prevPage => prevPage + 1);
-    navigate(`/main?page=${currentPage + 1}`);
+    // navigate(`/main?page=${currentPage + 1}`);
   };
 
   const handlePrevPage = () => {
     setCurrentPage(prevPage => prevPage - 1);
-    navigate(`/main?page=${currentPage - 1}`);
+    // navigate(`/main?page=${currentPage - 1}`);
   };
 
   const handlePageClick = (page: number) => {
     setCurrentPage(page);
-    navigate(`/main?page=${page}`);
+    // navigate(`/main?page=${page}`);
   };
 
   const indexOfLastRecord = currentPage * recordsPerPage;
