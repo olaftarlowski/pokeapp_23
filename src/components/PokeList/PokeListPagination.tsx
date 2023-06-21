@@ -9,17 +9,17 @@ type PaginationProps = {
   handlePageClick: (page: number) => void;
 };
 
-const PaginationWrapper = styled.div`
 
+const PaginationWrapper = styled.div`
   position: sticky;
-   bottom: 0;
-   height: 50px;
+  bottom: 0;
+  height: 50px;
   width: 100%;
   border: 1px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
-   background-color: aliceblue;
+  background-color: aliceblue;
 `;
 
 const PaginationButton = styled.button`
@@ -29,7 +29,7 @@ const PaginationButton = styled.button`
   padding: 8px 12px;
   margin: 0 2px;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 
   &:hover {
     background-color: #b8c7d9;
