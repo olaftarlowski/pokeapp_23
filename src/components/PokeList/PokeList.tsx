@@ -62,7 +62,7 @@ const PokeList = () => {
         ) : currentRecords.length !== 0 ? (
           <>
             {currentRecords.map((props: SingleRecord) => (
-              <PokeListItem key={props.id} {...props} />
+              <PokeListItem key={props.id} {...props} currentPageAt={currentPage}/>
             ))}
           </>
         ) : (

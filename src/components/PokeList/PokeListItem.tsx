@@ -150,7 +150,7 @@ const TextboxInfo = styled.div`
   }
 `;
 
-const PokeListItem = React.memo(({ id, pokemon_species: { name }, sprite, entry_number }: SingleRecord) => {
+const PokeListItem = React.memo(({ id, pokemon_species: { name }, sprite, entry_number, currentPageAt }: SingleRecord) => {
   const [isSnackbarActive, setIsSnackbarActive] = useState<boolean>(false);
   const { addRecord, selectedRecords } = useContext(PokeListContext);
   const recordData = { id, entry_number, sprite, pokemon_species: { name } }
@@ -165,6 +165,11 @@ const PokeListItem = React.memo(({ id, pokemon_species: { name }, sprite, entry_
       }
     }
   };
+
+  const setCurrentPageAt = (page:any) => {
+    console.log(page);
+    
+  }
 
   return (<>
     <Snackbar isSnackbarActive={isSnackbarActive}
@@ -187,7 +192,7 @@ const PokeListItem = React.memo(({ id, pokemon_species: { name }, sprite, entry_
       </TextboxInfo>
       <div className="controls-area">
         <button className="control-item" onClick={() => handleAddRecord(recordData)}>Add</button>
-        <Link className="control-item" to={`${name}`}>
+        <Link className="control-item" to={`${name}`} onClick={() => setCurrentPageAt(currentPageAt)}>
           More
         </Link>
       </div>

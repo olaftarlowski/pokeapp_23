@@ -3,6 +3,7 @@ export type SingleRecord = {
   entry_number: number;
   sprite: string;
   pokemon_species: { name: string };
+  currentPageAt?: number;
 };
 
 export type ApiData = { pokemon_entries: SingleRecord[] };

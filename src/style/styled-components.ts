@@ -11,7 +11,12 @@ export const RootLayoutWrapper = styled.div`
   background: url(${backgroundImage});
 `;
 
-export const HomeWrapper = styled.div``;
+export const HomeWrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 
 export const HeaderWrapper = styled.header<{ height: number }>`
   background-color: ${(props) => props.theme.colors.primary};
