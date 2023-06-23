@@ -10,6 +10,9 @@ interface PokeListContextType {
   selectedRecords: SingleRecord[];
   addRecord: (record: SingleRecord) => void;
   removeElement: (target: string) => void;
+
+  pageNumberUserWasAt?:number,
+  handlePageNumberUserWasAt: (prevPage:number) => void
 }
 
 export const PokeListContext = createContext<PokeListContextType>({
@@ -18,12 +21,16 @@ export const PokeListContext = createContext<PokeListContextType>({
 
   selectedRecords: [],
   addRecord: () => undefined,
-  removeElement: () => undefined
+  removeElement: () => undefined,
+
+  pageNumberUserWasAt: 1,
+  handlePageNumberUserWasAt: ()=>undefined
 });
 
 export const PokeListProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedRecords, setSelectedRecords] = useState<SingleRecord[]>([]);
   const [allSingleRecords, setAllSingleRecords] = useState<SingleRecord[]>([]);
+  const [pageNumberUserWasAt, setPageNumberUserWasAt] = useState(1);
   const imageLink = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 
   const addAllSingleRecords = async () => {
@@ -65,9 +72,13 @@ export const PokeListProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     );
   };
 
+  const handlePageNumberUserWasAt = (prevPage: number) => {
+    setPageNumberUserWasAt(prevPage)
+  }
+
   return (
     <PokeListContext.Provider
-      value={{ allSingleRecords, addAllSingleRecords, selectedRecords, addRecord, removeElement }}
+      value={{ allSingleRecords, addAllSingleRecords, selectedRecords, addRecord, removeElement,pageNumberUserWasAt ,handlePageNumberUserWasAt }}
     >
       {children}
     </PokeListContext.Provider>

@@ -152,7 +152,7 @@ const TextboxInfo = styled.div`
 
 const PokeListItem = React.memo(({ id, pokemon_species: { name }, sprite, entry_number, currentPageAt }: SingleRecord) => {
   const [isSnackbarActive, setIsSnackbarActive] = useState<boolean>(false);
-  const { addRecord, selectedRecords } = useContext(PokeListContext);
+  const { addRecord, selectedRecords, handlePageNumberUserWasAt } = useContext(PokeListContext);
   const recordData = { id, entry_number, sprite, pokemon_species: { name } }
 
   const handleAddRecord = (recordData: SingleRecord) => {
@@ -166,9 +166,10 @@ const PokeListItem = React.memo(({ id, pokemon_species: { name }, sprite, entry_
     }
   };
 
-  const setCurrentPageAt = (page:any) => {
+  const setCurrentPageAt = (page: any) => {
     console.log(page);
-    
+    handlePageNumberUserWasAt(page)
+
   }
 
   return (<>
