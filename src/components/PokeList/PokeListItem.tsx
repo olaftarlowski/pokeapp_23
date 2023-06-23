@@ -166,10 +166,10 @@ const PokeListItem = React.memo(({ id, pokemon_species: { name }, sprite, entry_
     }
   };
 
-  const setCurrentPageAt = (page: any) => {
-    console.log(page);
-    handlePageNumberUserWasAt(page)
-
+  const setCurrentPageAt = (page: number | undefined) => {
+    if (page) {
+      handlePageNumberUserWasAt(page)
+    }
   }
 
   return (<>

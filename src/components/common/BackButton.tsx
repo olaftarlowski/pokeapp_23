@@ -1,8 +1,12 @@
 
 import { Link, useLocation } from "react-router-dom";
 import { BackButtonWrapper } from "../../style/styled-components";
+import { useContext } from "react";
+import { PokeListContext } from "../../store/AppContext";
 
 const BackButton = () => {
+    const { pageNumberUserWasAt } = useContext(PokeListContext);
+
     const location = useLocation();
     const currentPath = location.pathname;
     const parts = currentPath.split('/');
@@ -11,7 +15,7 @@ const BackButton = () => {
 
     return (
         <BackButtonWrapper>
-            <Link to={toPath}>Back</Link>
+            <Link to={toPath + `?page=${pageNumberUserWasAt}`}>Back</Link>
         </BackButtonWrapper>
     );
 };
