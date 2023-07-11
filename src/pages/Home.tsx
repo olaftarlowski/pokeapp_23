@@ -5,7 +5,7 @@ const Home = () => {
 
     return (
         <HomeWrapper>
-            <div style={{ width: "100%", height: 40, margin: '0 auto' }}><center>TEST</center> </div>
+            <div style={{ width: "100%", height: 60, margin: '0 auto' }}><center>TEST</center> </div>
             <PokeList />
         </HomeWrapper>
     )
