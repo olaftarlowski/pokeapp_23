@@ -159,12 +159,23 @@ const PokeListItem = React.memo(({ id, pokemon_species: { name }, sprite, entry_
     if (addRecord) {
       const isDuplicate = selectedRecords.some(item => item.id === recordData.id);
       if (!isDuplicate) {
-        addRecord(recordData);
+        if (selectedRecords.length === 3) {
+          setIsSnackbarActive(true);
+        } else {
+          addRecord(recordData);
+        }
       } else {
         setIsSnackbarActive(true);
       }
     }
   };
+
+  let snackbarMessage = '';
+  if (selectedRecords.length === 3) {
+    snackbarMessage = 'Team is full!';
+  } else {
+    snackbarMessage = 'Already in your team!';
+  }
 
   const setCurrentPageAt = (page: number | undefined) => {
     if (page) {
@@ -174,7 +185,8 @@ const PokeListItem = React.memo(({ id, pokemon_species: { name }, sprite, entry_
 
   return (<>
     <Snackbar isSnackbarActive={isSnackbarActive}
-      setIsSnackbarActive={setIsSnackbarActive} />
+      setIsSnackbarActive={setIsSnackbarActive}
+      message={snackbarMessage} />
     <ItemWrapper>
       <FigureItem>
         <LazyLoad height={50}>

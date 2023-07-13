@@ -3,11 +3,12 @@ import { SnackbarWrapper } from "../../style/styled-components"
 
 interface SnackbarPropsItem {
     setSnackbar: (isActive: boolean) => void,
-    toFadeOut: number
-    position: string
+    toFadeOut: number,
+    position: string,
+    message?: string
 }
 
-const SnackbarItem = ({ setSnackbar, toFadeOut, position }: SnackbarPropsItem) => {
+const SnackbarItem = ({ setSnackbar, toFadeOut, position, message }: SnackbarPropsItem) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setSnackbar(false);
@@ -16,9 +17,14 @@ const SnackbarItem = ({ setSnackbar, toFadeOut, position }: SnackbarPropsItem) =
         return () => clearTimeout(timer);
     }, [setSnackbar, toFadeOut]);
 
+    const closeSnackbarHandler = () => {
+        setSnackbar(false);
+    }
+
     return (
         <SnackbarWrapper className={`snackbar-wrapper-${position}`}>
-            <span>Already in your team!</span>
+            <button className="button-close" onClick={closeSnackbarHandler}>X</button>
+            <span>{message}</span>
         </SnackbarWrapper>
     );
 };

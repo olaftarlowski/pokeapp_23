@@ -232,6 +232,21 @@ export const SnackbarWrapper = styled.div`
   z-index: 10;
   transition: opacity 150ms, transform 150ms;
 
+  .button-close {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 24px;
+    height: 24px;
+    background-color: ${(props) => props.theme.colors.secondary};
+    color: ${(props) => props.theme.colors.text};
+    border: 2px solid ${(props) => props.theme.colors.text};
+    border-radius: 50%;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1;
+  }
+
   span {
     background-color: ${(props) => props.theme.colors.secondary};
     color: ${(props) => props.theme.colors.text};
